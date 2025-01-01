@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div>
-                    <a href="./login/signup.php" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 text-sm font-medium shadow-md transform hover:scale-105 transition duration-300">
+                    <a href="../login/signin.php" class="bg-yellow-500 text-white px-4 py-2 rounded-full hover:bg-yellow-500 text-sm font-medium shadow-md transform hover:scale-105 transition duration-300">
                         Sign In
                     </a>
                 </div>

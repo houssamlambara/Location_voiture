@@ -8,38 +8,45 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .nav-hover:hover {
+            transform: scale(1.05);
+            transition: all 0.3s ease;
+        }
+    </style>
 </head>
 
-<body class="bg-gray-50">
-    <!-- Navbar -->
-    <nav class="bg-black shadow-md fixed w-full z-50">
+<body class="bg-gradient-to-br from-gray-50 to-gray-100">
+    <!-- Navbar Amélioré -->
+    <nav class="bg-black bg-opacity-95 shadow-2xl fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
                     <a href="../index.php" class="flex-shrink-0">
-                        <img class="h-10 w-auto" src="https://via.placeholder.com/150x50?text=RoadRover"
-                            alt="RoadRover Logo">
+                        <img class="h-10 w-auto transform hover:scale-110 transition duration-300" src="https://via.placeholder.com/150x50?text=RoadRover" alt="RoadRover Logo">
                     </a>
                 </div>
                 <div class="flex-1 flex justify-center">
                     <div class="flex items-baseline space-x-4">
-                        <a href="../index.php" class="text-white hover:bg-gray-200 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                        <a href="#" class="text-white hover:bg-gray-200 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Nos Véhicules</a>
-                        <a href="./reservation.php" class="text-white hover:bg-gray-200 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Réservation</a>
-                        <a href="./about.php" class="text-white hover:bg-gray-200 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">À Propos</a>
-                        <a href="./contact.php" class="text-white hover:bg-gray-200 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                        <a href="../index.php" class="text-white nav-hover hover:bg-yellow-500 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="./categorie.php" class="text-white nav-hover hover:bg-yellow-500 px-3 py-2 rounded-md text-sm font-medium">Nos Véhicules</a>
+                        <a href="./reservation.php" class="text-white nav-hover hover:bg-yellow-500 px-3 py-2 rounded-md text-sm font-medium">Réservation</a>
+                        <a href="#" class="text-white nav-hover hover:bg-yellow-500 px-3 py-2 rounded-md text-sm font-medium">À Propos</a>
+                        <a href="./contact.php" class="text-white nav-hover hover:bg-yellow-500 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
                     </div>
                 </div>
                 <div>
-                    <a href="./login/signup.php" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 text-sm font-medium">
+                    <a href="./login/signup.php" class="bg-yellow-500 text-white px-4 py-2 rounded-full hover:bg-yellow-500 text-sm font-medium shadow-md transform hover:scale-105 transition duration-300">
                         Sign In
                     </a>
                 </div>
             </div>
         </div>
     </nav>
-</body>
-
     <!-- Page de Catégorie de Voitures -->
     <div class="container mx-auto px-4 py-16">
         <h1 class="text-4xl font-bold text-center mt-12 mb-12">Nos Premium Voitures</h1>
@@ -75,7 +82,7 @@
                         </div>
                     </div>
                     <div class="mt-4 flex space-x-2">
-                    <a href="../front_end/reservation.php"class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 text-center flex items-center justify-center">Réserver</a>
+                    <a href="../front_end/reservation.php"class="w-full bg-yellow-500 text-white py-2 rounded-md hover:bg-yellow-400 text-center flex items-center justify-center">Réserver</a>
                     <button class="w-full bg-gray-200 text-gray-800 py-2 rounded-md hover:bg-gray-300">Voir détail</button>
                     </div>
                 </div>
@@ -95,7 +102,7 @@
                         </div>
                     </div>
                     <div class="mt-4 flex space-x-2">
-                    <a href="../front_end/reservation.php"class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 text-center flex items-center justify-center">Réserver</a>
+                    <a href="../front_end/reservation.php"class="w-full bg-yellow-500 text-white py-2 rounded-md hover:bg-yellow-400 text-center flex items-center justify-center">Réserver</a>
                         <button class="w-full bg-gray-200 text-gray-800 py-2 rounded-md hover:bg-gray- 300">Voir
                             détail</button>
                     </div>
@@ -116,7 +123,7 @@
                         </div>
                     </div>
                     <div class="mt-4 flex space-x-2">
-                    <a href="../front_end/reservation.php"class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 text-center flex items-center justify-center">Réserver</a>
+                    <a href="../front_end/reservation.php"class="w-full bg-yellow-500 text-white py-2 rounded-md hover:bg-yellow-400 text-center flex items-center justify-center">Réserver</a>
                         <button class="w-full bg-gray-200 text-gray-800 py-2 rounded-md hover:bg-gray-300">Voir
                             détail</button>
                     </div>
@@ -137,7 +144,7 @@
                         </div>
                     </div>
                     <div class="mt-4 flex space-x-2">
-                    <a href="../front_end/reservation.php"class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 text-center flex items-center justify-center">Réserver</a>
+                    <a href="../front_end/reservation.php"class="w-full bg-yellow-500 text-white py-2 rounded-md hover:bg-yellow-400 text-center flex items-center justify-center">Réserver</a>
 
                         <button class="w-full bg-gray-200 text-gray-800 py-2 rounded-md hover:bg-gray-300">Voir
                             détail</button>
@@ -159,7 +166,7 @@
                         </div>
                     </div>
                     <div class="mt-4 flex space-x-2">
-                    <a href="../front_end/reservation.php"class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 text-center flex items-center justify-center">Réserver</a>
+                    <a href="../front_end/reservation.php"class="w-full bg-yellow-500 text-white py-2 rounded-md hover:bg-yellow-400 text-center flex items-center justify-center">Réserver</a>
 
                         <button class="w-full bg-gray-200 text-gray-800 py-2 rounded-md hover:bg-gray-300">Voir
                             détail</button>
@@ -181,7 +188,7 @@
                         </div>
                     </div>
                     <div class="mt-4 flex space-x-2">
-                    <a href="../front_end/reservation.php"class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 text-center flex items-center justify-center">Réserver</a>
+                    <a href="../front_end/reservation.php"class="w-full bg-yellow-500 text-white py-2 rounded-md hover:bg-yellow-400 text-center flex items-center justify-center">Réserver</a>
 
                         <button class="w-full bg-gray-200 text-gray-800 py-2 rounded-md hover:bg-gray-300">Voir
                             détail</button>
@@ -203,7 +210,7 @@
                         </div>
                     </div>
                     <div class="mt-4 flex space-x-2">
-                    <a href="../front_end/reservation.php"class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 text-center flex items-center justify-center">Réserver</a>
+                    <a href="../front_end/reservation.php"class="w-full bg-yellow-500 text-white py-2 rounded-md hover:bg-yellow-400 text-center flex items-center justify-center">Réserver</a>
 
                         <button class="w-full bg-gray-200 text-gray-800 py-2 rounded-md hover:bg-gray-300">Voir
                             détail</button>
@@ -225,7 +232,7 @@
                         </div>
                     </div>
                     <div class="mt-4 flex space-x-2">
-                    <a href="../front_end/reservation.php"class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 text-center flex items-center justify-center">Réserver</a>
+                    <a href="../front_end/reservation.php"class="w-full bg-yellow-500 text-white py-2 rounded-md hover:bg-yellow-400 text-center flex items-center justify-center">Réserver</a>
 
                         <button class="w-full bg-gray-200 text-gray-800 py-2 rounded-md hover:bg-gray-300">Voir
                             détail</button>
@@ -247,7 +254,7 @@
                         </div>
                     </div>
                     <div class="mt-4 flex space-x-2">
-                    <a href="../front_end/reservation.php"class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 text-center flex items-center justify-center">Réserver</a>
+                    <a href="../front_end/reservation.php"class="w-full bg-yellow-500 text-white py-2 rounded-md hover:bg-yellow-400 text-center flex items-center justify-center">Réserver</a>
 
                         <button class="w-full bg-gray-200 text-gray-800 py-2 rounded-md hover:bg-gray-300">Voir
                             détail</button>
@@ -269,7 +276,7 @@
                         </div>
                     </div>
                     <div class="mt-4 flex space-x-2">
-                    <a href="../front_end/reservation.php"class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 text-center flex items-center justify-center">Réserver</a>
+                    <a href="../front_end/reservation.php"class="w-full bg-yellow-500 text-white py-2 rounded-md hover:bg-yellow-400 text-center flex items-center justify-center">Réserver</a>
 
                         <button class="w-full bg-gray-200 text-gray-800 py-2 rounded-md hover:bg-gray-300">Voir
                             détail</button>
@@ -291,7 +298,7 @@
                         </div>
                     </div>
                     <div class="mt-4 flex space-x-2">
-                    <a href="../front_end/reservation.php"class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 text-center flex items-center justify-center">Réserver</a>
+                    <a href="../front_end/reservation.php"class="w-full bg-yellow-500 text-white py-2 rounded-md hover:bg-yellow-400 text-center flex items-center justify-center">Réserver</a>
 
                         <button class="w-full bg-gray-200 text-gray-800 py-2 rounded-md hover:bg-gray-300">Voir
                             détail</button>
@@ -313,7 +320,7 @@
                         </div>
                     </div>
                     <div class="mt-4 flex space-x-2">
-                    <a href="../front_end/reservation.php"class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 text-center flex items-center justify-center">Réserver</a>
+                    <a href="../front_end/reservation.php"class="w-full bg-yellow-500 text-white py-2 rounded-md hover:bg-yellow-400 text-center flex items-center justify-center">Réserver</a>
 
                         <button class="w-full bg-gray-200 text-gray-800 py-2 rounded-md hover:bg-gray-300">Voir
                             détail</button>
@@ -357,10 +364,10 @@
             <div>
                 <h4 class="font-bold mb-4 text-yellow-500">Liens Rapides</h4>
                 <ul class="space-y-2">
-                    <li><a href="#home" class="hover:text-yellow-400 transition duration-300">Accueil</a></li>
-                    <li><a href="#cars" class="hover:text-yellow-400 transition duration-300">Véhicules</a></li>
-                    <li><a href="#reservation" class="hover:text-yellow-400 transition duration-300">Réservation</a></li>
-                    <li><a href="#about" class="hover:text-yellow-400 transition duration-300">À Propos</a></li>
+                    <li><a href="./categorie.php" class="hover:text-yellow-400 transition duration-300">Nos Véhicules</a></li>
+                    <li><a href="./reservation.php" class="hover:text-yellow-400 transition duration-300">Réservation</a></li>
+                    <li><a href="./about.php" class="hover:text-yellow-400 transition duration-300">About Us</a></li>
+                    <li><a href="./contact.php" class="hover:text-yellow-400 transition duration-300">Contact Us</a></li>
                 </ul>
             </div>
 

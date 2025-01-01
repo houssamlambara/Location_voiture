@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div>
-                    <a href="./login/signup.php" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 text-sm font-medium">
+                    <a href="./login/signup.php" class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-500 text-sm font-medium">
                         Sign In
                     </a>
                 </div>
