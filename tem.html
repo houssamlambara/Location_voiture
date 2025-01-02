@@ -4,120 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="model-search-content">
-                    <div class="row">
-                        <div class="col-md-offset-1 col-md-2 col-sm-12">
-                            <div class="single-model-search">
-                                <h2>select year</h2>
-                                <div class="model-select-icon">
-                                    <select class="form-control">
-
-                                          <option value="default">year</option><!-- /.option-->
-
-                                          <option value="2018">2018</option><!-- /.option-->
-
-                                          <option value="2017">2017</option><!-- /.option-->
-                                          <option value="2016">2016</option><!-- /.option-->
-
-                                    </select><!-- /.select-->
-                                </div><!-- /.model-select-icon -->
-                            </div>
-                            <div class="single-model-search">
-                                <h2>body style</h2>
-                                <div class="model-select-icon">
-                                    <select class="form-control">
-
-                                          <option value="default">style</option><!-- /.option-->
-
-                                          <option value="sedan">sedan</option><!-- /.option-->
-
-                                          <option value="van">van</option><!-- /.option-->
-                                          <option value="roadster">roadster</option><!-- /.option-->
-
-                                    </select><!-- /.select-->
-                                </div><!-- /.model-select-icon -->
-                            </div>
-                        </div>
-                        <div class="col-md-offset-1 col-md-2 col-sm-12">
-                            <div class="single-model-search">
-                                <h2>select make</h2>
-                                <div class="model-select-icon">
-                                    <select class="form-control">
-
-                                          <option value="default">make</option><!-- /.option-->
-
-                                          <option value="toyota">toyota</option><!-- /.option-->
-
-                                          <option value="holden">holden</option><!-- /.option-->
-                                          <option value="maecedes-benz">maecedes-benz.</option><!-- /.option-->
-
-                                    </select><!-- /.select-->
-                                </div><!-- /.model-select-icon -->
-                            </div>
-                            <div class="single-model-search">
-                                <h2>car condition</h2>
-                                <div class="model-select-icon">
-                                    <select class="form-control">
-
-                                          <option value="default">condition</option><!-- /.option-->
-
-                                          <option value="something">something</option><!-- /.option-->
-
-                                          <option value="something">something</option><!-- /.option-->
-                                          <option value="something">something</option><!-- /.option-->
-
-                                    </select><!-- /.select-->
-                                </div><!-- /.model-select-icon -->
-                            </div>
-                        </div>
-                        <div class="col-md-offset-1 col-md-2 col-sm-12">
-                            <div class="single-model-search">
-                                <h2>select model</h2>
-                                <div class="model-select-icon">
-                                    <select class="form-control">
-
-                                          <option value="default">model</option><!-- /.option-->
-
-                                          <option value="kia-rio">kia-rio</option><!-- /.option-->
-
-                                          <option value="mitsubishi">mitsubishi</option><!-- /.option-->
-                                          <option value="ford">ford</option><!-- /.option-->
-
-                                    </select><!-- /.select-->
-                                </div><!-- /.model-select-icon -->
-                            </div>
-                            <div class="single-model-search">
-                                <h2>select price</h2>
-                                <div class="model-select-icon">
-                                    <select class="form-control">
-
-                                          <option value="default">price</option><!-- /.option-->
-
-                                          <option value="$0.00">$0.00</option><!-- /.option-->
-
-                                          <option value="$0.00">$0.00</option><!-- /.option-->
-                                          <option value="$0.00">$0.00</option><!-- /.option-->
-
-                                    </select><!-- /.select-->
-                                </div><!-- /.model-select-icon -->
-                            </div>
-                        </div>
-                        <div class="col-md-2 col-sm-12">
-                            <div class="single-model-search text-center">
-                                <button class="welcome-btn model-search-btn" onclick="window.location.href='#'">
-                                    search
-                                </button>
-                            </div>
-                        </div>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <div class="bg-white shadow rounded-lg p-6">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                <!-- Select Year -->
+                <div class="col-span-1">
+                    <div class="mb-4">
+                        <h2 class="text-lg font-semibold mb-2">Select Year</h2>
+                        <select class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            <option value="default">Year</option>
+                            <option value="2018">2018</option>
+                            <option value="2017">2017</option>
+                            <option value="2016">2016</option>
+                        </select>
                     </div>
+                    <div>
+                        <h2 class="text-lg font-semibold mb-2">Body Style</h2>
+                        <select class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            <option value="default">Style</option>
+                            <option value="sedan">Sedan</option>
+                            <option value="van">Van</option>
+                            <option value="roadster">Roadster</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Select Make -->
+                <div class="col-span-1">
+                    <div class="mb-4">
+                        <h2 class="text-lg font-semibold mb-2">Select Make</h2>
+                        <select class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            <option value="default">Make</option>
+                            <option value="toyota">Toyota</option>
+                            <option value="holden">Holden</option>
+                            <option value="mercedes-benz">Mercedes-Benz</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h2 class="text-lg font-semibold mb-2">Car Condition</h2>
+                        <select class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            <option value="default">Condition</option>
+                            <option value="new">New</option>
+                            <option value="used">Used</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Select Model -->
+                <div class="col-span-1">
+                    <div class="mb-4">
+                        <h2 class="text-lg font-semibold mb-2">Select Model</h2>
+                        <select class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            <option value="default">Model</option>
+                            <option value="kia-rio">Kia Rio</option>
+                            <option value="mitsubishi">Mitsubishi</option>
+                            <option value="ford">Ford</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h2 class="text-lg font-semibold mb-2">Select Price</h2>
+                        <select class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            <option value="default">Price</option>
+                            <option value="$0.00">$0.00</option>
+                            <option value="$10,000">$10,000</option>
+                            <option value="$20,000">$20,000</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Search Button -->
+                <div class="col-span-1 flex justify-center items-center">
+                    <button class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-600">
+                        Search
+                    </button>
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
 </body>
 </html>

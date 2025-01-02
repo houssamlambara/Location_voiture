@@ -53,32 +53,28 @@
     <div class="max-w-4xl mx-auto px-6">
         <div class="bg-gray-900 bg-opacity-80 p-10 shadow-2xl rounded-lg border border-gray-700 mt-12">
             <h2 class="text-4xl font-bold text-center text-yellow-400 mb-8 tracking-wide uppercase">Réservez Votre Véhicule</h2>
-            <form class="space-y-8">
-                <!-- Nom et Prénom -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <form class="space-y-8" action="reservation.php" method="POST">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
                     <div>
                         <label for="first-name" class="block text-sm font-medium text-yellow-300">Prénom</label>
-                        <input type="text" id="first-name" placeholder="Votre prénom" class="w-full bg-gray-800 border border-gray-600 text-yellow-100 rounded-md focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none px-4 py-2">
+                        <input type="text" id="username" name="username" placeholder="Votre prénom" class="w-full bg-gray-800 border border-gray-600 text-yellow-100 rounded-md focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none px-4 py-2">
                     </div>
                     <div>
                         <label for="last-name" class="block text-sm font-medium text-yellow-300">Nom</label>
-                        <input type="text" id="last-name" placeholder="Votre nom" class="w-full bg-gray-800 border border-gray-600 text-yellow-100 rounded-md focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none px-4 py-2">
+                        <input type="text" id="last-name" name="username" placeholder="Votre nom" class="w-full bg-gray-800 border border-gray-600 text-yellow-100 rounded-md focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none px-4 py-2">
                     </div>
                 </div>
-
-                <!-- Email et Téléphone -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
                     <div>
                         <label for="email" class="block text-sm font-medium text-yellow-300">Email</label>
-                        <input type="email" id="email" placeholder="Votre email" class="w-full bg-gray-800 border border-gray-600 text-yellow-100 rounded-md focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none px-4 py-2">
+                        <input type="email" id="email" name="email" placeholder="Votre email" class="w-full bg-gray-800 border border-gray-600 text-yellow-100 rounded-md focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none px-4 py-2">
                     </div>
                     <div>
                         <label for="phone" class="block text-sm font-medium text-yellow-300">Téléphone</label>
-                        <input type="tel" id="phone" placeholder="Votre numéro" class="w-full bg-gray-800 border border-gray-600 text-yellow-100 rounded-md focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none px-4 py-2">
+                        <input type="tel" id="phone" name="phone" placeholder="Votre numéro" class="w-full bg-gray-800 border border-gray-600 text-yellow-100 rounded-md focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none px-4 py-2">
                     </div>
                 </div>
-
-                <!-- Sélection de Voiture -->
                 <div>
                     <label for="car" class="block text-sm font-medium text-yellow-300">Sélectionnez votre voiture</label>
                     <select id="car" class="w-full bg-gray-800 border border-gray-600 text-yellow-100 rounded-md focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none px-4 py-2">
@@ -87,23 +83,19 @@
                         <option value="cabriolet"> Cabriolet Sport</option>
                     </select>
                 </div>
-
-                <!-- Dates -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
                     <div>
                         <label for="start-date" class="block text-sm font-medium text-yellow-300">Date de début</label>
-                        <input type="date" id="start-date" class="w-full bg-gray-800 border border-gray-600 text-yellow-100 rounded-md focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none px-4 py-2">
+                        <input type="date" id="pickup_date" name="pickup_date" class="w-full bg-gray-800 border border-gray-600 text-yellow-100 rounded-md focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none px-4 py-2">
                     </div>
                     <div>
                         <label for="end-date" class="block text-sm font-medium text-yellow-300">Date de fin</label>
-                        <input type="date" id="end-date" class="w-full bg-gray-800 border border-gray-600 text-yellow-100 rounded-md focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none px-4 py-2">
+                        <input type="date" id="return_date" name="return_date" class="w-full bg-gray-800 border border-gray-600 text-yellow-100 rounded-md focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none px-4 py-2">
                     </div>
                 </div>
-
-                <!-- Bouton de soumission -->
                 <div class="text-center">
                     <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-8 py-3 rounded-full font-bold uppercase tracking-wider shadow-lg transform hover:scale-105 transition duration-300">
-                        Réserver Maintenant 🚀
+                        Réserver Maintenant
                     </button>
                 </div>
             </form>
@@ -111,11 +103,10 @@
     </div>
 </section>
 
-   <!-- Footer Amélioré -->
+   <!-- Footer -->
 <footer class="bg-gradient-to-r from-gray-900 to-black text-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-            <!-- Colonnes précédentes avec des améliorations visuelles subtiles -->
             <div>
                 <img src="https://via.placeholder.com/150x50?text=RoadRover" alt="RoadRover Logo" class="mb-4 mx-auto transform hover:scale-110 transition duration-300">
                 <p class="text-sm text-gray-400">RoadRover - Votre partenaire de confiance pour la location de voitures de luxe.</p>

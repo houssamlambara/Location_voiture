@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                 </div>
                 <div>
-                    <a href="./login/signup.php" class="bg-yellow-500 text-white px-4 py-2 rounded-full hover:bg-yellow-500 text-sm font-medium shadow-md transform hover:scale-105 transition duration-300">
+                    <a href="./login/signup.php" class="bg-yellow-400 text-white px-4 py-2 rounded-full hover:bg-yellow-500 text-sm font-medium shadow-md transform hover:scale-105 transition duration-300">
                         Sign In
                     </a>
                 </div>
@@ -74,10 +74,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="w-full max-w-md">
         <div class="bg-white rounded-xl p-8 shadow-lg">
             <div class="text-center mb-8">
-                <h2 class="text-3xl font-semibold text-gray-800">Se Conneter</h2>
+                <h2 class="text-3xl font-bold text-yellow-400">Se Conneter</h2>
                 <p class="text-gray-600 mt-2">Connectez-vous à votre compte LuxAuto</p>
             </div>
-            <!-- Affichage du message d'erreur -->
             <?php if (isset($error)): ?>
                 <div class="text-red-500 text-center mb-4">
                     <p><?php echo $error; ?></p>
@@ -94,9 +93,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="password" id="password" name="password" required placeholder="Votre mot de passe" class="w-full py-3 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 <div class="flex items-center justify-between">
-                    <a href="#" class="text-blue-500 hover:underline">Mot de passe oublié ?</a>
+                    <a href="#" class="text-yellow-400 hover:underline">Mot de passe oublié ?</a>
                 </div>
-                <button type="submit" class="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">Se Connecter</button>
+                <button type="submit" class="w-full py-3 bg-yellow-400 text-white rounded-lg hover:bg-yellow-500 transition duration-300">Se Connecter</button>
             </form>
             <div class="my-6 flex items-center justify-center">
                 <div class="border-t border-gray-300 w-full"></div>
@@ -112,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </button>
             </div>
             <div class="text-center mt-6">
-                <p class="text-gray-500">Pas de compte ? <a href="../login/signup.php" class="text-blue-500 hover:underline">Inscrivez-vous</a></p>
+                <p class="text-gray-500">Pas de compte ? <a href="../login/signup.php" class="text-yellow-400 hover:underline">Inscrivez-vous</a></p>
             </div>
         </div>
     </div>

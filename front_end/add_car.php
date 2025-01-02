@@ -116,133 +116,72 @@
       </ul>
    </div>
 </aside>
-<body class="bg-gray-100">
-    <div class="p-6 max-w-7xl mx-auto lg:ml-64">
-        <h1 class="text-3xl font-bold text-gray-800 mb-8">Dashboard Chef</h1>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div class="bg-white rounded-lg shadow p-6">
-                <div class="flex items-center">
-                    <div class="p-3 rounded-full bg-yellow-100 text-yellow-500">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm text-gray-500">Demandes en attente</p>
-                        <p class="text-2xl font-semibold text-gray-700">8</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="bg-white rounded-lg shadow p-6">
-                <div class="flex items-center">
-                    <div class="p-3 rounded-full bg-green-100 text-green-500">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                        </svg>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm text-gray-500">Réservations aujourd'hui</p>
-                        <p class="text-2xl font-semibold text-gray-700">12</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-lg shadow p-6">
-                <div class="flex items-center">
-                    <div class="p-3 rounded-full bg-blue-100 text-blue-500">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
-                        </svg>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm text-gray-500">Réservations demain</p>
-                        <p class="text-2xl font-semibold text-gray-700">15</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-lg shadow p-6">
-                <div class="flex items-center">
-                    <div class="p-3 rounded-full bg-purple-100 text-purple-500">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm text-gray-500">Total clients inscrits</p>
-                        <p class="text-2xl font-semibold text-gray-700">256</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div class="bg-white rounded-lg shadow">
-                <div class="p-6">
-                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Demandes en attente</h2>
-                    <div class="space-y-4">
-                        <div class="border rounded-lg p-4">
-                            <div class="flex justify-between items-start mb-2">
-                                <div>
-                                    <h3 class="font-medium">Jean Dupont</h3>
-                                    <p class="text-sm text-gray-500">2 personnes • 20:00</p>
-                                </div>
-                                <div class="flex space-x-2">
-                                    <button class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">
-                                        Accepter
-                                    </button>
-                                    <button class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
-                                        Refuser
-                                    </button>
-                                </div>
-                            </div>
-                            <p class="text-sm text-gray-600">Note: Allergie aux fruits de mer</p>
-                        </div>
-                        <div class="border rounded-lg p-4">
-                            <div class="flex justify-between items-start mb-2">
-                                <div>
-                                    <h3 class="font-medium">Marie Martin</h3>
-                                    <p class="text-sm text-gray-500">4 personnes • 19:30</p>
-                                </div>
-                                <div class="flex space-x-2">
-                                    <button class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">
-                                        Accepter
-                                    </button>
-                                    <button class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
-                                        Refuser
-                                    </button>
-                                </div>
-                            </div>
-                            <p class="text-sm text-gray-600">Note: Table près de la fenêtre</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-lg shadow">
-                <div class="p-6">
-                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Prochain client</h2>
-                    <div class="border rounded-lg p-6">
-                        <div class="flex items-start">
-                            <div class="ml-4">
-                                <h3 class="font-medium text-lg">Pierre Dubois</h3>
-                                <p class="text-gray-500">Réservation à 19:00</p>
-                                <div class="mt-4 space-y-2">
-                                    <p class="text-sm"><span class="font-medium">Nombre de personnes:</span> 3</p>
-                                    <p class="text-sm"><span class="font-medium">Menu:</span> Menu végétarien</p>
-                                    <p class="text-sm"><span class="font-medium">Historique:</span> Client régulier (5 visites)</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- Main Content -->
+<div class="p-4 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-1">
+  <div class="col-span-1 bg-white p-6 rounded-lg shadow-md lg:ml-64 mt-20">
+    <h2 class="text-center text-2xl font-bold mb-8 text-orange-500">Ajouter une Voiture</h2>
+    <form action="add_menu.php" method="POST" enctype="multipart/form-data" class="space-y-4">
+    <div>
+        <label for="nom" class="block text-sm font-medium text-gray-700">Model</label>
+        <input type="text" id="nom" name="model" class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm" placeholder="Entrez le nom" required>
     </div>
+    <div>
+        <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+        <input type="text" id="description" name="description" class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm" placeholder="Description" required>
+    </div>
+    <div>
+        <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
+        <input type="file" id="image" name="image_url" class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+    </div>
+    <div>
+        <label for="prix" class="block text-sm font-medium text-gray-700">Prix</label>
+        <textarea id="prix" name="prix_par_jour" class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm" placeholder="Entrez le prix" required></textarea>
+    </div>
+    <div>
+        <button type="submit" class="w-full bg-orange-600 text-white py-2 px-4 rounded-md shadow hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2">Ajouter une Voiture</button>
+    </div>
+</form>
+  </div>
 
-    <script>
+  <div class="col-span-1 md:col-span-2 bg-white p-6 rounded-lg shadow-md overflow-x-auto lg:ml-64">
+    <h2 class="text-center text-2xl font-bold mb-8 text-orange-500">Add Voiture</h2>
+    <div>
+      <table class="w-full border-collapse border border-gray-400">
+        <thead class="bg-black">
+          <tr>
+            <th class="border border-black text-white px-4 py-2">Model</th>
+            <th class="border border-black text-white px-4 py-2">Description</th>
+            <th class="border border-black text-white px-4 py-2">Image</th>
+            <th class="border border-black text-white px-4 py-2">Prix</th>
+          </tr>
+        </thead>
+        <tbody>
+        <?php
+include("../classes/db.php");
+
+$db = new Database();
+$conn = $db->getConnection();
+
+$sql = "SELECT * FROM `voiture`";
+$res = $conn->query($sql);
+
+while ($row = $res->fetch(PDO::FETCH_ASSOC)):
+?>
+    <tr class="hover:bg-orange-500">
+        <td class="border border-black px-4 py-2"><?php echo $row["model"]; ?></td>
+        <td class="border border-black px-4 py-2"><?php echo $row["description"]; ?></td>
+        <td class="border border-black px-4 py-2"><?php echo $row["image_url"]; ?></td>
+        <td class="border border-black px-4 py-2"><?php echo $row["prix_par_jour"]; ?></td>
+    </tr>
+<?php endwhile; ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
   document.getElementById('menu-toggle').addEventListener('click', function() {
     const sidebar = document.getElementById('logo-sidebar');
     sidebar.classList.toggle('-translate-x-full');
@@ -251,4 +190,3 @@
 
 </body>
 </html>
-

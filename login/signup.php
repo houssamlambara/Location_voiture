@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="bg-white rounded-xl p-8 shadow-lg">
             <!-- Titre -->
             <div class="text-center mb-8">
-                <h2 class="text-3xl font-semibold text-gray-800">Inscription</h2>
+                <h2 class="text-3xl font-bold text-yellow-400">Inscription</h2>
                 <p class="text-gray-600 mt-2">Créez un compte sur LuxAuto</p>
             </div>
             <!-- Formulaire -->
@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label for="password" class="block text-gray-700 mb-2">Mot de passe</label>
                     <input type="password" id="password" name="password" required placeholder="Votre mot de passe" class="w-full py-3 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
-                <button type="submit" class="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">S'inscrire</button>
+                <button type="submit" class="w-full py-3 bg-yellow-400 text-white rounded-lg hover:bg-yellow-500 transition duration-300">S'inscrire</button>
             </form>
             <div class="my-6 flex items-center justify-center">
                 <div class="border-t border-gray-300 w-full"></div>
@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </button>
             </div>
             <div class="text-center mt-6">
-                <p class="text-gray-500">Vous avez déjà un compte ? <a href="../login/signin.php" class="text-blue-500 hover:underline">Connectez-vous</a></p>
+                <p class="text-gray-500">Vous avez déjà un compte ? <a href="../login/signin.php" class="text-yellow-500 hover:underline">Connectez-vous</a></p>
             </div>
         </div>
     </div>
