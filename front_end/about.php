@@ -93,6 +93,60 @@
     </div>
      </body>
 
+     <?php
+include_once '../classes/db.php';
+include_once '../classes/classe_Reservation.php';
+
+// Connexion à la base de données
+$db = new Database();
+$pdo = $db->getConnection();
+
+// Récupération des réservations
+$reservation = new Reservation();
+$reservations = $reservation->getAllReservations($pdo);
+?>
+
+    <section class="py-16 bg-gray-100">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Liste des Réservations</h2>
+            <div class="bg-white shadow-md rounded-lg p-6">
+                <table class="min-w-full bg-white border-collapse border border-gray-200">
+                    <thead>
+                        <tr class="bg-gray-200 text-gray-700">
+                            <th class="py-2 px-4 border">#</th>
+                            <th class="py-2 px-4 border">Utilisateur</th>
+                            <th class="py-2 px-4 border">Véhicule</th>
+                            <th class="py-2 px-4 border">Date Début</th>
+                            <th class="py-2 px-4 border">Date Fin</th>
+                            <th class="py-2 px-4 border">Prix Total</th>
+                            <th class="py-2 px-4 border">Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                        if ($reservations): ?>
+                            <?php foreach ($reservations as $reservation): ?>
+                                <tr class="text-gray-800">
+                                    <td class="py-2 px-4 border"><?php echo htmlspecialchars($reservation['description']); ?></td>
+                                    <td class="py-2 px-4 border"><?php echo htmlspecialchars($reservation['description']); ?></td>
+                                    <td class="py-2 px-4 border"><?php echo htmlspecialchars($reservation['model']); ?></td>
+                                    <td class="py-2 px-4 border"><?php echo htmlspecialchars($reservation['pickup_date']); ?></td>
+                                    <td class="py-2 px-4 border"><?php echo htmlspecialchars($reservation['return_date']); ?></td>
+                                    <td class="py-2 px-4 border"><?php echo htmlspecialchars($reservation['total_price']); ?> €</td>
+                                    <td class="py-2 px-4 border"><?php echo htmlspecialchars($reservation['status']); ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="7" class="py-2 px-4 text-center">Aucune réservation trouvée.</td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
 
     <!-- Footer Amélioré -->
 <footer class="bg-gradient-to-r from-gray-900 to-black text-white py-12">
