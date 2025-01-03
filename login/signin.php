@@ -11,14 +11,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $authenticatedUser = $user->authenticate($email, $password);
 
     if ($authenticatedUser) {
-        echo "Bienvenue, " . htmlspecialchars($authenticatedUser['username']);
+        header("Location: ../front_end/admin.php");
         exit;
     } else {
         $error = "Email ou mot de passe incorrect.";
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
