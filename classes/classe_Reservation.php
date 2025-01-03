@@ -1,14 +1,16 @@
     <?php 
 
     class Reservation {
-        
+
+        private $id;
         private $voiture_id;
+        private $user_id;
         private $pickup_date;
         private $return_date;
         private $total_price;
         private $status;
 
-        public function __construct($idReservation = null,$voiture_id = null, $pickup_date = null, $return_date = null, $total_price = null, $status = 'En attente') {
+        public function __construct($id = null,$voiture_id = null, $pickup_date = null, $return_date = null, $total_price = null, $status = 'En attente') {
             $this->voiture_id = $voiture_id;
             $this->pickup_date = $pickup_date;
             $this->return_date = $return_date;
@@ -86,14 +88,14 @@
                                         `return_date` = :return_date, 
                                         `total_price` = :total_price, 
                                         `status` = :status
-                                        WHERE `id` = :idReservation");
+                                        WHERE `id` = :id");
                 $stmt->execute([
                     'voiture_id' => $this->voiture_id,
                     'pickup_date' => $this->pickup_date,
                     'return_date' => $this->return_date,
                     'total_price' => $this->total_price,
                     'status' => $this->status,
-                    'idReservation' => $this->idReservation
+                    'id' => $this->id
                 ]);
                 return "Reservation updated successfully.";
             } catch (Exception $e) {
@@ -118,7 +120,7 @@
                                         WHERE `id` = :id");
                 $stmt->execute([
                     'status' => $this->status,
-                    'id' => $this->idReservation
+                    'id' => $this->id
                 ]);
                 return "Reservation status updated successfully.";
             } catch (Exception $e) {
