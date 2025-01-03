@@ -110,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="max-w-4xl mx-auto px-6">
         <div class="bg-gray-900 bg-opacity-80 p-10 shadow-2xl rounded-lg border border-gray-700 mt-12">
             <h2 class="text-4xl font-bold text-center text-yellow-400 mb-8 tracking-wide uppercase">Réservez Votre Véhicule</h2>
-            <form class="space-y-8" action="reservation.php" method="POST">
+            <form class="space-y-8" action="../traitement/trait_reservation.php" method="POST">
 
             <div class="grid grid-cols-1 sm:grid-cols-1 gap-8">
                     <div>

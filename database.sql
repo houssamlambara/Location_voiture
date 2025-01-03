@@ -64,6 +64,26 @@ CREATE TABLE RESERVATIONS (
     FOREIGN KEY (user_id) REFERENCES USERS(id) ON DELETE CASCADE,
     FOREIGN KEY (voiture_id) REFERENCES VOITURE(id) ON DELETE CASCADE
 );
+DELEMETUR //
+CREATE procedure ajoutReservation(
+    IN user_id INT,
+    IN voiture_id INT,
+    IN pickup_date date,
+    IN return_date date ,
+    In total_price DECIMAL(10,2)
+ 
+)
+BEGIN 
+Insert into RESERVATIONS(user_id,voiture_id,pickup_date,return_date,total_price)
+values(user_id,voiture_id,pickup_date,return_date,total_price);
+UPDATE VOITURE
+set  status='Reserver'
+where id=voiture_id;
+END;//
+
+
+
+
 
 CREATE TABLE REVIEWS (
     id INT(11) PRIMARY KEY AUTO_INCREMENT,

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once "../classes/db.php";
 include_once "../classes/signinController.php";
 
@@ -9,13 +10,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $user = new User();
     $authenticatedUser = $user->authenticate($email, $password);
-
     if ($authenticatedUser) {
-        header("Location: ../front_end/admin.php");
-        exit;
+        if ($authenticatedUser['id_role'] == 1) {
+           
+            header("Location: ../front_end/admin.php");
+            exit();
+        } else {
+            $_SESSION['id_user']=$authenticatedUser['id'];
+            header("Location: ../index.php");
+            exit();
+        }
     } else {
         $error = "Email ou mot de passe incorrect.";
     }
+   
 }
 ?>
 <!DOCTYPE html>
