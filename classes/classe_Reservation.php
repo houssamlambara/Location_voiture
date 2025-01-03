@@ -18,34 +18,40 @@
 
         public function creerReservation($pdo) {
             try {
-                $stmt = $pdo->prepare("INSERT INTO `reservations` (`voiture_id`, `pickup_date`, `return_date`, `total_price`, `status`) 
-                                        VALUES (:voiture_id, :pickup_date, :return_date, :total_price, :status)");
+                $query = "INSERT INTO reservations (user_id, voiture_id, pickup_date, return_date, total_price, status) 
+                          VALUES (:user_id, :voiture_id, :pickup_date, :return_date, :total_price, :status)";
         
-                $params = [
-                    'voiture_id' => $this->voiture_id,
-                    'pickup_date' => $this->pickup_date,
-                    'return_date' => $this->return_date,
-                    'total_price' => $this->total_price,
-                    'status' => $this->status,
-                ];
+                $stmt = $pdo->prepare($query);
         
-                // Debug des paramètres
-                var_dump($params);
+                $stmt->bindParam(':user_id', $this->user_id, PDO::PARAM_INT);
+                $stmt->bindParam(':voiture_id', $this->voiture_id, PDO::PARAM_INT);
+                $stmt->bindParam(':pickup_date', $this->pickup_date, PDO::PARAM_STR);
+                $stmt->bindParam(':return_date', $this->return_date, PDO::PARAM_STR);
+                $stmt->bindParam(':total_price', $this->total_price, PDO::PARAM_STR);
+                $stmt->bindParam(':status', $this->status, PDO::PARAM_STR);
         
-                // Exécution
-                $stmt->execute($params);
-        
-                return "Reservation added successfully.";
-            } catch (Exception $e) {
-                return "Couldn't add reservation: " . $e->getMessage();
+                if ($stmt->execute()) {
+                    return $pdo->lastInsertId(); // Retourne l'ID de la réservation créée
+                } else {
+                    return false; // Retourne false si l'exécution échoue
+                }
+            } catch (PDOException $e) {
+                return "Erreur PDO : " . $e->getMessage();
             }
         }
-        public static function getAllReservations($pdo) {
+        public function getAllReservations($pdo) {
             try {
-                $stmt = $pdo->query("SELECT * FROM `reservations`");
+                $query = "SELECT r.id, r.pickup_date, r.return_date, r.total_price, r.status, 
+                                 v.model AS voiture_model, u.username AS utilisateur
+                          FROM reservations r
+                          JOIN voiture v ON r.voiture_id = v.id
+                          JOIN users u ON r.user_id = u.id
+                          ORDER BY r.created_at DESC";
+                $stmt = $pdo->prepare($query);
+                $stmt->execute();
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
-            } catch (Exception $e) {
-                return "Couldn't fetch reservations: " . $e->getMessage();
+            } catch (PDOException $e) {
+                return "Erreur PDO : " . $e->getMessage();
             }
         }
 
