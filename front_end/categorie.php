@@ -67,15 +67,19 @@
 
         <!-- Voitures -->
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-
-            <!-- Voiture 1 -->
-            <div
+    <?php 
+    require_once '../classes/vehicule.php';
+     $voiture= new vehicule();
+     $allCars= $voiture->showAllvehicules();
+     foreach($allCars as $car):
+    ?>
+    <div
                 class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
                 <img src="../img/classe S.jpg" alt="Mercedes Classe S" class="w-full h-48 object-cover">
                 <div class="p-4">
-                    <h3 class="text-xl font-semibold mb-2">Mercedes Classe S</h3>
+                    <h3 class="text-xl font-semibold mb-2"><?= $car['model']?></h3>
                     <div class="flex justify-between items-center">
-                        <span class="text-gray-600">180€/jour</span>
+                        <span class="text-gray-600"><?= $car['prix_par_jour']?>/jour</span>
                         <div class="flex items-center">
                             <i class="fas fa-user mr-2"></i>4
                             <i class="fas fa-gas-pump ml-2 mr-2"></i>Essence
@@ -87,9 +91,12 @@
                     </div>
                 </div>
             </div>
+    <?php endforeach; ?>
+            <!-- Voiture 1 -->
+            
 
             <!-- Voiture 2 -->
-            <div
+            <!-- <div
                 class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
                 <img src="../img/bmw X5.jpeg" alt="BMW X5" class="w-full h-48 object-cover">
                 <div class="p-4">
@@ -107,10 +114,10 @@
                             détail</button>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Voiture 3 -->
-            <div
+            <!-- <div
                 class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
                 <img src="../img/911 turbo S.jpg" alt="Porsche 911" class="w-full h-48 object-cover">
                 <div class="p-4">
@@ -128,10 +135,10 @@
                             détail</button>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Voiture 4 -->
-            <div
+            <!-- <div
                 class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
                 <img src="../img/tesla model S.jpg" alt="Tesla Model S" class="w-full h-48 object-cover">
                 <div class="p-4">
@@ -150,10 +157,10 @@
                             détail</button>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Voiture 5 -->
-            <div
+            <!-- <div
                 class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
                 <img src="../img/RS7.jpg" alt="Audi RS7" class="w-full h-48 object-cover">
                 <div class="p-4">
@@ -172,10 +179,10 @@
                             détail</button>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Voiture 6 -->
-            <div
+            <!-- <div
                 class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
                 <img src="../img/SVR.jpg" alt="Range Rover SVR" class="w-full h-48 object-cover">
                 <div class="p-4">
@@ -194,10 +201,10 @@
                             détail</button>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Voiture 7 -->
-            <div
+            <!-- <div
                 class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
                 <img src="../img/458 italia .jpeg" alt="Ferrari 458" class="w-full h-48 object-cover">
                 <div class="p-4">
@@ -216,10 +223,10 @@
                             détail</button>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Voiture 8 -->
-            <div
+            <!-- <div
                 class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
                 <img src="../img/RSQ8.jpg" alt="Audi RSQ8" class="w-full h-48 object-cover">
                 <div class="p-4">
@@ -238,10 +245,10 @@
                             détail</button>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Voiture 9 -->
-            <div
+            <!-- <div
                 class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
                 <img src="../img/Urus.jpg" alt="Lamborghini Urus" class="w-full h-48 object-cover">
                 <div class="p-4">
@@ -260,10 +267,10 @@
                             détail</button>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Voiture 10 -->
-            <div
+            <!-- <div
                 class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
                 <img src="../img/AMG GT.jpeg" alt="Mercedes GT63" class="w-full h-48 object-cover">
                 <div class="p-4">
@@ -282,10 +289,10 @@
                             détail</button>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Voiture 11 -->
-            <div
+            <!-- <div
                 class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
                 <img src="../img/Porsche Cayenne.jpg" alt="Porsche Cayenne" class="w-full h-48 object-cover">
                 <div class="p-4">
@@ -304,10 +311,10 @@
                             détail</button>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Voiture 12 -->
-            <div
+            <!-- <div
                 class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
                 <img src="../img/GranTurismo.jpeg" alt="Maserati Granturismo" class="w-full h-48 object-cover">
                 <div class="p-4">
@@ -326,7 +333,7 @@
                             détail</button>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- Pagination -->
