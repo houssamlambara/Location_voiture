@@ -22,7 +22,7 @@
 
 <body class="bg-gradient-to-br from-gray-50 to-gray-100">
     <!-- Navbar Amélioré -->
-    <nav class="bg-black bg-opacity-95 shadow-2xl fixed w-full z-50">
+    <!-- <nav class="bg-black bg-opacity-95 shadow-2xl fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
@@ -46,20 +46,63 @@
                 </div>
             </div>
         </div>
-    </nav>
+    </nav> -->
 
-    <!-- Formulaire de Réservation -->
+    <?php
+    include_once '../classes/db.php';
+    include_once '../classes/classe_Reservation.php';
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Ensure each field is set before using it
+        $username = isset($_POST['username']) ? $_POST['username'] : null;
+        $email = isset($_POST['email']) ? $_POST['email'] : null;
+        $phone = isset($_POST['phone']) ? $_POST['phone'] : null;
+        $voiture_id = isset($_POST['voiture_id']) ? $_POST['voiture_id'] : null;
+        $pickup_date = isset($_POST['pickup_date']) ? $_POST['pickup_date'] : null;
+        $return_date = isset($_POST['return_date']) ? $_POST['return_date'] : null;
+    
+        // Check if voiture_id is provided
+        if ($voiture_id == null) {
+            echo "Voiture ID is required.";
+        } else {
+            // Proceed with the reservation process
+            $prix_voiture = 0;
+            if ($voiture_id == 'berline') {
+                $prix_voiture = 100; 
+            } elseif ($voiture_id == 'suv') {
+                $prix_voiture = 150;
+            } elseif ($voiture_id == 'cabriolet') {
+                $prix_voiture = 200;
+            }
+    
+            $user_id = 1; 
+            
+            $voiture_id = ($voiture_id == 'berline') ? 1 : (($voiture_id == 'suv') ? 2 : 3);
+    
+            $db = new Database();
+            $pdo = $db->getConnection(); // Create an instance of the DatabaseManager
+            $reservation = new Reservation($user_id, $voiture_id, $pickup_date, $return_date, $prix_voiture); // Pass the instance to the Reservation constructor
+    
+            $is_saved = $reservation->creerReservation($pdo);
+    
+            if ($is_saved) {
+                echo $is_saved;
+            } else {
+                echo "Erreur lors de la réservation.";
+            }
+        }
+    }
+?>
+
+
+   <!-- Formulaire de Réservation -->
 <section class="py-16 bg-gradient-to-r from-gray-900 via-gray-800 to-black text-white">
     <div class="max-w-4xl mx-auto px-6">
         <div class="bg-gray-900 bg-opacity-80 p-10 shadow-2xl rounded-lg border border-gray-700 mt-12">
             <h2 class="text-4xl font-bold text-center text-yellow-400 mb-8 tracking-wide uppercase">Réservez Votre Véhicule</h2>
             <form class="space-y-8" action="reservation.php" method="POST">
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                    <div>
-                        <label for="first-name" class="block text-sm font-medium text-yellow-300">Prénom</label>
-                        <input type="text" id="username" name="username" placeholder="Votre prénom" class="w-full bg-gray-800 border border-gray-600 text-yellow-100 rounded-md focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none px-4 py-2">
-                    </div>
+            <div class="grid grid-cols-1 sm:grid-cols-1 gap-8">
                     <div>
                         <label for="last-name" class="block text-sm font-medium text-yellow-300">Nom</label>
                         <input type="text" id="last-name" name="username" placeholder="Votre nom" class="w-full bg-gray-800 border border-gray-600 text-yellow-100 rounded-md focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none px-4 py-2">
@@ -76,13 +119,26 @@
                     </div>
                 </div>
                 <div>
-                    <label for="car" class="block text-sm font-medium text-yellow-300">Sélectionnez votre voiture</label>
-                    <select id="car" class="w-full bg-gray-800 border border-gray-600 text-yellow-100 rounded-md focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none px-4 py-2">
-                        <option value="berline"> Berline de Luxe</option>
-                        <option value="suv"> SUV Premium</option>
-                        <option value="cabriolet"> Cabriolet Sport</option>
-                    </select>
-                </div>
+                <label for="voiture_id" class="block text-sm font-medium text-yellow-300">Sélectionnez votre voiture</label>
+                <select id="car" name="voiture_id" class="w-full bg-gray-800 border border-gray-600 text-yellow-100 rounded-md focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none px-4 py-2">
+                    <?php
+                    // Affichage des voitures récupérées de la base de données
+                    include ("db.php");
+                    $db = new Database();
+                    $pdo = $db->getConnection();
+                    $stmt = $pdo->prepare("SELECT * FROM voiture");
+                    $stmt->execute();
+                    $voitures = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    if ($voitures) {
+                        foreach ($voitures as $voiture) {
+                            echo "<option value='{$voiture['id']}'> {$voiture['model']} </option>";
+                        }
+                    } else {
+                        echo "<option value=''>Aucune voiture disponible</option>";
+                    }
+                    ?>
+                </select>
+            </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
                     <div>
                         <label for="start-date" class="block text-sm font-medium text-yellow-300">Date de début</label>
