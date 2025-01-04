@@ -20,7 +20,7 @@
             $this->status = $status;
         }
 
-        public function creerReservation($pdo)
+        public function creerReservation($pdo, $user_id)
         {
             try {
                 $query = "INSERT INTO reservations (user_id, voiture_id, pickup_date, return_date, total_price, status) 
@@ -28,7 +28,7 @@
 
                 $stmt = $pdo->prepare($query);
 
-                $stmt->bindParam(':user_id', $this->user_id, PDO::PARAM_INT);
+                $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
                 $stmt->bindParam(':voiture_id', $this->voiture_id, PDO::PARAM_INT);
                 $stmt->bindParam(':pickup_date', $this->pickup_date, PDO::PARAM_STR);
                 $stmt->bindParam(':return_date', $this->return_date, PDO::PARAM_STR);

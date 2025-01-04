@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<?php 
-    session_start();
-    echo $user_id = $_SESSION['id_user'];
-?>
 <html lang="fr">
 
 <head>
@@ -27,7 +23,7 @@
 
 <body class="bg-gradient-to-br from-gray-50 to-gray-100">
     <!-- Navbar Amélioré -->
-    <nav class="bg-black bg-opacity-95 shadow-2xl fixed w-full z-50">
+    <!-- <nav class="bg-black bg-opacity-95 shadow-2xl fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
@@ -51,67 +47,67 @@
                 </div>
             </div>
         </div>
-    </nav>
+    </nav> -->
 
     <?php
-    include_once '../classes/db.php';
-    include_once '../classes/classe_Reservation.php';
+session_start();
+include_once '../classes/db.php';
+include_once '../classes/classe_Reservation.php';
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $username = isset($_POST['username']) ? $_POST['username'] : null;
-        $email = isset($_POST['email']) ? $_POST['email'] : null;
-        $phone = isset($_POST['phone']) ? $_POST['phone'] : null;
-        $voiture_id = isset($_POST['voiture_id']) ? $_POST['voiture_id'] : null;
-        $pickup_date = isset($_POST['pickup_date']) ? $_POST['pickup_date'] : null;
-        $return_date = isset($_POST['return_date']) ? $_POST['return_date'] : null;
+if (!isset($_SESSION['user_id'])) {
+    die("Erreur : Utilisateur non connecté.");
+}
 
-        if (!$username || !$email || !$phone || !$voiture_id || !$pickup_date || !$return_date) {
-            die("Erreur : Veuillez remplir tous les champs obligatoires.");
-        }
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $user_id = $_SESSION['user_id'];
+    echo $user_id;
+    
+    $username = isset($_POST['username']) ? $_POST['username'] : null;
+    $email = isset($_POST['email']) ? $_POST['email'] : null;
+    $phone = isset($_POST['phone']) ? $_POST['phone'] : null;
+    $voiture_id = isset($_POST['voiture_id']) ? $_POST['voiture_id'] : null;
+    $pickup_date = isset($_POST['pickup_date']) ? $_POST['pickup_date'] : null;
+    $return_date = isset($_POST['return_date']) ? $_POST['return_date'] : null;
 
-        if (strtotime($pickup_date) >= strtotime($return_date)) {
-            die("Erreur : La date de début doit être antérieure à la date de fin.");
-        }
-
-        try {
-            $db = new Database();
-            $pdo = $db->getConnection();
-
-            $stmt = $pdo->prepare("SELECT prix_par_jour FROM voiture WHERE id = ?");
-            $stmt->execute([$voiture_id]);
-            $prix_par_jour = $stmt->fetchColumn();
-
-            if (!$prix_par_jour) {
-                die("Erreur : La voiture sélectionnée n'existe pas.");
-            }
-
-            $nb_jours = (strtotime($return_date) - strtotime($pickup_date)) / 86400;
-            $total_price = $prix_par_jour * $nb_jours;
-
-            $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
-            $stmt->execute([$email]);
-            $user_id = $stmt->fetchColumn();
-
-            if (!$user_id) {
-                $stmt = $pdo->prepare("INSERT INTO users (username, email, phone) VALUES (?, ?, ?)");
-                $stmt->execute([$username, $email, $phone]);
-                $user_id = $pdo->lastInsertId();
-            }
-
-            $reservation = new Reservation($user_id, $voiture_id, $pickup_date, $return_date, $total_price);
-            $is_saved = $reservation->creerReservation($pdo);
-
-            if ($is_saved) {
-                echo "Réservation créée avec succès.";
-            } else {
-                echo "Erreur lors de la création de la réservation.";
-            }
-        } catch (Exception $e) {
-            echo "Erreur : " . $e->getMessage();
-        }
+    if (!$username || !$email || !$phone || !$voiture_id || !$pickup_date || !$return_date) {
+        die("Erreur : Veuillez remplir tous les champs obligatoires.");
     }
-    ?>
 
+    if (strtotime($pickup_date) >= strtotime($return_date)) {
+        die("Erreur : La date de début doit être antérieure à la date de fin.");
+    }
+
+    try {
+        $db = new Database();
+        $pdo = $db->getConnection();
+
+        $stmt = $pdo->prepare("SELECT prix_par_jour FROM voiture WHERE id = ?");
+        $stmt->execute([$voiture_id]);
+        $prix_par_jour = $stmt->fetchColumn();
+
+        if (!$prix_par_jour) {
+            die("Erreur : La voiture sélectionnée n'existe pas.");
+        }
+
+        $nb_jours = (strtotime($return_date) - strtotime($pickup_date)) / 86400;
+        $total_price = $prix_par_jour * $nb_jours;
+
+        $stmt = $pdo->prepare("UPDATE users SET username = ?, phone = ? WHERE id = ?");
+        $stmt->execute([$username, $phone, $user_id]);
+
+        $reservation = new Reservation($user_id, $voiture_id, $pickup_date, $return_date, $total_price);
+        $is_saved = $reservation->creerReservation($pdo,$user_id);
+
+        if ($is_saved) {
+            echo "Réservation créée avec succès.";
+        } else {
+            echo "Erreur lors de la création de la réservation.";
+        }
+    } catch (Exception $e) {
+        echo "Erreur : " . $e->getMessage();
+    }
+}
+?>
 
     <!-- Formulaire de Réservation -->
     <section class="py-16 bg-gradient-to-r from-gray-900 via-gray-800 to-black text-white">
