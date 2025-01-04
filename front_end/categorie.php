@@ -13,6 +13,7 @@
             font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
         }
+
         .nav-hover:hover {
             transform: scale(1.05);
             transition: all 0.3s ease;
@@ -67,33 +68,33 @@
 
         <!-- Voitures -->
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-    <?php 
-    require_once '../classes/vehicule.php';
-     $voiture= new vehicule();
-     $allCars= $voiture->showAllvehicules();
-     foreach($allCars as $car):
-    ?>
-    <div
-                class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
-                <img src="../img/classe S.jpg" alt="Mercedes Classe S" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="text-xl font-semibold mb-2"><?= $car['model']?></h3>
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-600"><?= $car['prix_par_jour']?>/jour</span>
-                        <div class="flex items-center">
-                            <i class="fas fa-user mr-2"></i>4
-                            <i class="fas fa-gas-pump ml-2 mr-2"></i>Essence
+            <?php
+            require_once '../classes/vehicule.php';
+
+            $voiture = new Vehicule();
+            $allCars = $voiture->showAllvehicules();
+            foreach ($allCars as $car):
+            ?>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
+                    <img src="<?= htmlspecialchars($car['image_url']) ?>" alt="<?= htmlspecialchars($car['model']) ?>" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2"><?= htmlspecialchars($car['model']) ?></h3>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600"><?= htmlspecialchars($car['prix_par_jour']) ?>/jour</span>
+                            <div class="flex items-center">
+                                <i class="fas fa-user mr-2"></i>4
+                                <i class="fas fa-gas-pump ml-2 mr-2"></i>Essence
+                            </div>
+                        </div>
+                        <div class="mt-4 flex space-x-2">
+                            <a href="../front_end/reservation.php" class="w-full bg-yellow-500 text-white py-2 rounded-md hover:bg-yellow-400 text-center flex items-center justify-center">Réserver</a>
+                            <button class="w-full bg-gray-200 text-gray-800 py-2 rounded-md hover:bg-gray-300">Voir détail</button>
                         </div>
                     </div>
-                    <div class="mt-4 flex space-x-2">
-                    <a href="../front_end/reservation.php"class="w-full bg-yellow-500 text-white py-2 rounded-md hover:bg-yellow-400 text-center flex items-center justify-center">Réserver</a>
-                    <button class="w-full bg-gray-200 text-gray-800 py-2 rounded-md hover:bg-gray-300">Voir détail</button>
-                    </div>
                 </div>
-            </div>
-    <?php endforeach; ?>
+            <?php endforeach; ?>
             <!-- Voiture 1 -->
-            
+
 
             <!-- Voiture 2 -->
             <!-- <div
@@ -359,49 +360,50 @@
     </script>
 
     <!-- Footer Amélioré -->
-<footer class="bg-gradient-to-r from-gray-900 to-black text-white py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-            <!-- Colonnes précédentes avec des améliorations visuelles subtiles -->
-            <div>
-                <img src="https://via.placeholder.com/150x50?text=RoadRover" alt="RoadRover Logo" class="mb-4 mx-auto transform hover:scale-110 transition duration-300">
-                <p class="text-sm text-gray-400">RoadRover - Votre partenaire de confiance pour la location de voitures de luxe.</p>
-            </div>
+    <footer class="bg-gradient-to-r from-gray-900 to-black text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                <!-- Colonnes précédentes avec des améliorations visuelles subtiles -->
+                <div>
+                    <img src="https://via.placeholder.com/150x50?text=RoadRover" alt="RoadRover Logo" class="mb-4 mx-auto transform hover:scale-110 transition duration-300">
+                    <p class="text-sm text-gray-400">RoadRover - Votre partenaire de confiance pour la location de voitures de luxe.</p>
+                </div>
 
-            <div>
-                <h4 class="font-bold mb-4 text-yellow-500">Liens Rapides</h4>
-                <ul class="space-y-2">
-                    <li><a href="./categorie.php" class="hover:text-yellow-400 transition duration-300">Nos Véhicules</a></li>
-                    <li><a href="./reservation.php" class="hover:text-yellow-400 transition duration-300">Réservation</a></li>
-                    <li><a href="./about.php" class="hover:text-yellow-400 transition duration-300">About Us</a></li>
-                    <li><a href="./contact.php" class="hover:text-yellow-400 transition duration-300">Contact Us</a></li>
-                </ul>
-            </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-yellow-500">Liens Rapides</h4>
+                    <ul class="space-y-2">
+                        <li><a href="./categorie.php" class="hover:text-yellow-400 transition duration-300">Nos Véhicules</a></li>
+                        <li><a href="./reservation.php" class="hover:text-yellow-400 transition duration-300">Réservation</a></li>
+                        <li><a href="./about.php" class="hover:text-yellow-400 transition duration-300">About Us</a></li>
+                        <li><a href="./contact.php" class="hover:text-yellow-400 transition duration-300">Contact Us</a></li>
+                    </ul>
+                </div>
 
-            <div>
-                <h4 class="font-bold mb-4 text-yellow-500">Contact</h4>
-                <ul class="space-y-2">
-                    <li><i class="fas fa-phone mr-2 text-yellow-500"></i>+33 1 23 45 67 89</li>
-                    <li><i class="fas fa-envelope mr-2 text-yellow-500"></i>contact@roadrover.com</li>
-                    <li><i class="fas fa-map-marker-alt mr-2 text-yellow-500"></i>Paris, France</li>
-                </ul>
-            </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-yellow-500">Contact</h4>
+                    <ul class="space-y-2">
+                        <li><i class="fas fa-phone mr-2 text-yellow-500"></i>+33 1 23 45 67 89</li>
+                        <li><i class="fas fa-envelope mr-2 text-yellow-500"></i>contact@roadrover.com</li>
+                        <li><i class="fas fa-map-marker-alt mr-2 text-yellow-500"></i>Paris, France</li>
+                    </ul>
+                </div>
 
-            <div>
-                <h4 class="font-bold mb-4 text-yellow-500">Suivez-nous</h4>
-                <div class="flex space-x-4 justify-center">
-                    <a href="#" class="text-2xl hover:text-yellow-400 transform hover:scale-125 transition duration-300"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="text-2xl hover:text-yellow-400 transform hover:scale-125 transition duration-300"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-2xl hover:text-yellow-400 transform hover:scale-125 transition duration-300"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-2xl hover:text-yellow-400 transform hover:scale-125 transition duration-300"><i class="fab fa-linkedin"></i></a>
+                <div>
+                    <h4 class="font-bold mb-4 text-yellow-500">Suivez-nous</h4>
+                    <div class="flex space-x-4 justify-center">
+                        <a href="#" class="text-2xl hover:text-yellow-400 transform hover:scale-125 transition duration-300"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-2xl hover:text-yellow-400 transform hover:scale-125 transition duration-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-2xl hover:text-yellow-400 transform hover:scale-125 transition duration-300"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-2xl hover:text-yellow-400 transform hover:scale-125 transition duration-300"><i class="fab fa-linkedin"></i></a>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="mt-8 pt-8 border-t border-gray-800 text-center">
-            <p class="text-sm text-gray-400">&copy; 2024 RoadRover. Tous droits réservés.</p>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center">
+                <p class="text-sm text-gray-400">&copy; 2024 RoadRover. Tous droits réservés.</p>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
 </body>
+
 </html>

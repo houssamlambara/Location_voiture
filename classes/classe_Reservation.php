@@ -1,6 +1,7 @@
-    <?php 
+    <?php
 
-    class Reservation {
+    class Reservation
+    {
 
         private $id;
         private $voiture_id;
@@ -10,7 +11,8 @@
         private $total_price;
         private $status;
 
-        public function __construct($id = null,$voiture_id = null, $pickup_date = null, $return_date = null, $total_price = null, $status = 'En attente') {
+        public function __construct($id = null, $voiture_id = null, $pickup_date = null, $return_date = null, $total_price = null, $status = 'En attente')
+        {
             $this->voiture_id = $voiture_id;
             $this->pickup_date = $pickup_date;
             $this->return_date = $return_date;
@@ -18,20 +20,21 @@
             $this->status = $status;
         }
 
-        public function creerReservation($pdo) {
+        public function creerReservation($pdo)
+        {
             try {
                 $query = "INSERT INTO reservations (user_id, voiture_id, pickup_date, return_date, total_price, status) 
                           VALUES (:user_id, :voiture_id, :pickup_date, :return_date, :total_price, :status)";
-        
+
                 $stmt = $pdo->prepare($query);
-        
+
                 $stmt->bindParam(':user_id', $this->user_id, PDO::PARAM_INT);
                 $stmt->bindParam(':voiture_id', $this->voiture_id, PDO::PARAM_INT);
                 $stmt->bindParam(':pickup_date', $this->pickup_date, PDO::PARAM_STR);
                 $stmt->bindParam(':return_date', $this->return_date, PDO::PARAM_STR);
                 $stmt->bindParam(':total_price', $this->total_price, PDO::PARAM_STR);
                 $stmt->bindParam(':status', $this->status, PDO::PARAM_STR);
-        
+
                 if ($stmt->execute()) {
                     return $pdo->lastInsertId(); // Retourne l'ID de la réservation créée
                 } else {
@@ -41,7 +44,8 @@
                 return "Erreur PDO : " . $e->getMessage();
             }
         }
-        public function getAllReservations($pdo) {
+        public function getAllReservations($pdo)
+        {
             try {
                 $query = "SELECT r.id, r.pickup_date, r.return_date, r.total_price, r.status, 
                                  v.model AS voiture_model, u.username AS utilisateur
@@ -57,7 +61,8 @@
             }
         }
 
-        public static function getReservationById($pdo, $id) {
+        public static function getReservationById($pdo, $id)
+        {
             try {
                 $stmt = $pdo->prepare("SELECT * FROM `reservations` WHERE `id` = :id");
                 $stmt->execute(['id' => $id]);
@@ -70,7 +75,8 @@
             }
         }
 
-        public static function getMyReservations($pdo, $userId) {
+        public static function getMyReservations($pdo, $userId)
+        {
             try {
                 $stmt = $pdo->prepare("SELECT * FROM `reservations` WHERE `user_id` = :userId");
                 $stmt->execute(['userId' => $userId]);
@@ -80,7 +86,8 @@
             }
         }
 
-        public function modifierReservation($pdo) {
+        public function modifierReservation($pdo)
+        {
             try {
                 $stmt = $pdo->prepare("UPDATE `reservations` SET 
                                         `voiture_id` = :voiture_id, 
@@ -103,7 +110,8 @@
             }
         }
 
-        public static function deleteReservation($pdo, $id) {
+        public static function deleteReservation($pdo, $id)
+        {
             try {
                 $stmt = $pdo->prepare("DELETE FROM `reservations` WHERE `id` = :id");
                 $stmt->execute(['id' => $id]);
@@ -113,7 +121,8 @@
             }
         }
 
-        public function annulerReservation($pdo) {
+        public function annulerReservation($pdo)
+        {
             try {
                 $stmt = $pdo->prepare("UPDATE `reservations` SET 
                                         `status` = :status 
@@ -128,7 +137,8 @@
             }
         }
 
-        public function __toString() {
+        public function __toString()
+        {
             return "Mon statut est: " . $this->status;
         }
     }

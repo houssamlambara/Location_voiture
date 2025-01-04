@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bindParam(':description', $description);
         $stmt->bindParam(':image_url', $image_url);
         $stmt->bindParam(':prix_par_jour', $prix_par_jour);
-        
+
         if ($stmt->execute()) {
             echo "Voiture ajoutée avec succès.";
             header("Location: ../front_end/add_car.php");
@@ -41,4 +41,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Erreur : " . $e->getMessage();
     }
 }
-?>

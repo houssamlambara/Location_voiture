@@ -1,7 +1,8 @@
 <?php
 include_once 'db.php';
 
-class User {
+class User
+{
     private $user_id;
     private $username;
     private $email;
@@ -10,11 +11,12 @@ class User {
     private PDO $db;
     function __construct($db)
     {
-       $this->db=$db; 
+        $this->db = $db;
     }
-    public function registerUser() {
+    public function registerUser()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->username = $_POST['username']; 
+            $this->username = $_POST['username'];
             $this->email = $_POST['email'];
             $this->password = $_POST['password'];
 
@@ -24,13 +26,14 @@ class User {
         }
     }
 
-    private function register() {
+    private function register()
+    {
         if (empty($this->username) || empty($this->email) || empty($this->password)) {
             return "Tous les champs doivent être remplis.";
         }
 
-        $database = new Database();  
-        $db = $database->getConnection();  
+        $database = new Database();
+        $db = $database->getConnection();
 
         $query = "INSERT INTO users (username, email, password) VALUES (:username, :email, :password)";
         $stmt = $db->prepare($query);
@@ -38,7 +41,7 @@ class User {
         // Lier les paramètres
         $stmt->bindParam(':username', $this->username);
         $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':password', password_hash($this->password, PASSWORD_DEFAULT));  
+        $stmt->bindParam(':password', password_hash($this->password, PASSWORD_DEFAULT));
 
         if ($stmt->execute()) {
             return "Utilisateur enregistré avec succès.";
@@ -47,4 +50,3 @@ class User {
         }
     }
 }
-?>

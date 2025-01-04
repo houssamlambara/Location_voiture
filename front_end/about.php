@@ -13,6 +13,7 @@
             font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
         }
+
         .nav-hover:hover {
             transform: scale(1.05);
             transition: all 0.3s ease;
@@ -48,37 +49,37 @@
         </div>
     </nav>
 
-<!-- Content Section Amélioré -->
-<div class="flex items-center justify-center min-h-screen">
-    <div class="max-w-6xl mx-auto p-4 mt-20">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white rounded-2xl shadow-2xl overflow-hidden">
-            <div class="flex flex-col justify-center text-center md:text-left p-8">
-            <h1 class="text-center text-5xl font-bold text-yellow-500 mb-6">À Propos de Nous</h1>
-                <div class="border-t border-yellow-500 mb-8"></div>
-                <p class="text-lg leading-relaxed mb-4 text-gray-700">
-                    Welcome to Mamoune Travels, your premier luxury travel agency in Morocco. We specialize in providing our clients with the ultimate travel experience, complete with private driver service, luxurious car rentals, and expert travel guides to help you discover all the beauty and wonder that Morocco has to offer.
-                </p>
-                <p class="text-lg leading-relaxed text-gray-700">
-                    At Mamoune Travels, we believe that travel should be more than just a simple getaway. It should be a transformative experience that stays with you for a lifetime. That's why we go above and beyond to provide our clients with the highest level of service and attention to detail.
-                </p>
-            </div>
-            <div class="overflow-hidden">
-                <img alt="A professional chauffeur opening the door of a luxury car for a client" 
-                     class="w-full h-full object-cover transform hover:scale-105 transition duration-300" 
-                     src="https://storage.googleapis.com/a1aa/image/PtWMD57ekfrflJ8NDuroONyIfx5meECgziWArThafXCSWPNAF.jpg"/>
+    <!-- Content Section Amélioré -->
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="max-w-6xl mx-auto p-4 mt-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div class="flex flex-col justify-center text-center md:text-left p-8">
+                    <h1 class="text-center text-5xl font-bold text-yellow-500 mb-6">À Propos de Nous</h1>
+                    <div class="border-t border-yellow-500 mb-8"></div>
+                    <p class="text-lg leading-relaxed mb-4 text-gray-700">
+                        Welcome to Mamoune Travels, your premier luxury travel agency in Morocco. We specialize in providing our clients with the ultimate travel experience, complete with private driver service, luxurious car rentals, and expert travel guides to help you discover all the beauty and wonder that Morocco has to offer.
+                    </p>
+                    <p class="text-lg leading-relaxed text-gray-700">
+                        At Mamoune Travels, we believe that travel should be more than just a simple getaway. It should be a transformative experience that stays with you for a lifetime. That's why we go above and beyond to provide our clients with the highest level of service and attention to detail.
+                    </p>
+                </div>
+                <div class="overflow-hidden">
+                    <img alt="A professional chauffeur opening the door of a luxury car for a client"
+                        class="w-full h-full object-cover transform hover:scale-105 transition duration-300"
+                        src="https://storage.googleapis.com/a1aa/image/PtWMD57ekfrflJ8NDuroONyIfx5meECgziWArThafXCSWPNAF.jpg" />
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <!-- Second Section Amélioré -->
     <div class="flex items-center justify-center min-h-screen">
         <div class="max-w-6xl mx-auto p-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white rounded-2xl shadow-2xl overflow-hidden">
                 <div class="overflow-hidden">
-                    <img alt="A luxurious black car parked in a parking lot with trees in the background" 
-                         class="w-full h-full object-cover transform hover:scale-105 transition duration-300"
-                         src="https://storage.googleapis.com/a1aa/image/m6zw5bnaKFZhOpsrUgMf9FyIl2hUoCDm6cU8xjQXFPluf0AUA.jpg"/>
+                    <img alt="A luxurious black car parked in a parking lot with trees in the background"
+                        class="w-full h-full object-cover transform hover:scale-105 transition duration-300"
+                        src="https://storage.googleapis.com/a1aa/image/m6zw5bnaKFZhOpsrUgMf9FyIl2hUoCDm6cU8xjQXFPluf0AUA.jpg" />
                 </div>
                 <div class="flex flex-col justify-center text-center p-8">
                     <p class="text-lg leading-relaxed mb-4 text-gray-700">
@@ -91,9 +92,9 @@
             </div>
         </div>
     </div>
-     </body>
+</body>
 
-     <?php
+<?php
 include_once '../classes/db.php';
 include_once '../classes/classe_Reservation.php';
 
@@ -104,49 +105,49 @@ $reservation = new Reservation();
 $reservations = $reservation->getAllReservations($pdo);
 ?>
 
-    <section class="py-16 bg-gray-100">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-3xl font-bold text-gray-800 mb-8">Liste des Réservations</h2>
-            <div class="bg-white shadow-md rounded-lg p-6">
-                <table class="min-w-full bg-white border-collapse border border-gray-200">
-                    <thead>
-                        <tr class="bg-gray-200 text-gray-700">
-                            <th class="py-2 px-4 border">#</th>
-                            <th class="py-2 px-4 border">Utilisateur</th>
-                            <th class="py-2 px-4 border">Véhicule</th>
-                            <th class="py-2 px-4 border">Date Début</th>
-                            <th class="py-2 px-4 border">Date Fin</th>
-                            <th class="py-2 px-4 border">Prix Total</th>
-                            <th class="py-2 px-4 border">Statut</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php 
-                        if ($reservations): ?>
-                            <?php foreach ($reservations as $reservation): ?>
-                                <tr class="text-gray-800">
-                                    <td class="py-2 px-4 border"><?php echo htmlspecialchars($reservation['description']); ?></td>
-                                    <td class="py-2 px-4 border"><?php echo htmlspecialchars($reservation['description']); ?></td>
-                                    <td class="py-2 px-4 border"><?php echo htmlspecialchars($reservation['model']); ?></td>
-                                    <td class="py-2 px-4 border"><?php echo htmlspecialchars($reservation['pickup_date']); ?></td>
-                                    <td class="py-2 px-4 border"><?php echo htmlspecialchars($reservation['return_date']); ?></td>
-                                    <td class="py-2 px-4 border"><?php echo htmlspecialchars($reservation['total_price']); ?> €</td>
-                                    <td class="py-2 px-4 border"><?php echo htmlspecialchars($reservation['status']); ?></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <tr>
-                                <td colspan="7" class="py-2 px-4 text-center">Aucune réservation trouvée.</td>
+<section class="py-16 bg-gray-100">
+    <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8">Liste des Réservations</h2>
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <table class="min-w-full bg-white border-collapse border border-gray-200">
+                <thead>
+                    <tr class="bg-gray-200 text-gray-700">
+                        <th class="py-2 px-4 border">#</th>
+                        <th class="py-2 px-4 border">Utilisateur</th>
+                        <th class="py-2 px-4 border">Véhicule</th>
+                        <th class="py-2 px-4 border">Date Début</th>
+                        <th class="py-2 px-4 border">Date Fin</th>
+                        <th class="py-2 px-4 border">Prix Total</th>
+                        <th class="py-2 px-4 border">Statut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if ($reservations): ?>
+                        <?php foreach ($reservations as $reservation): ?>
+                            <tr class="text-gray-800">
+                                <td class="py-2 px-4 border"><?php echo htmlspecialchars($reservation['description']); ?></td>
+                                <td class="py-2 px-4 border"><?php echo htmlspecialchars($reservation['description']); ?></td>
+                                <td class="py-2 px-4 border"><?php echo htmlspecialchars($reservation['model']); ?></td>
+                                <td class="py-2 px-4 border"><?php echo htmlspecialchars($reservation['pickup_date']); ?></td>
+                                <td class="py-2 px-4 border"><?php echo htmlspecialchars($reservation['return_date']); ?></td>
+                                <td class="py-2 px-4 border"><?php echo htmlspecialchars($reservation['total_price']); ?> €</td>
+                                <td class="py-2 px-4 border"><?php echo htmlspecialchars($reservation['status']); ?></td>
                             </tr>
-                        <?php endif; ?>
-                    </tbody>
-                </table>
-            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="7" class="py-2 px-4 text-center">Aucune réservation trouvée.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
         </div>
-    </section>
+    </div>
+</section>
 
 
-    <!-- Footer Amélioré -->
+<!-- Footer Amélioré -->
 <footer class="bg-gradient-to-r from-gray-900 to-black text-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
