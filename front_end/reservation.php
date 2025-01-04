@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div>
-                    <a href="./login/signup.php" class="bg-yellow-500 text-white px-4 py-2 rounded-full hover:bg-yellow-500 text-sm font-medium shadow-md transform hover:scale-105 transition duration-300">
+                    <a href="../login/signin.php" class="bg-yellow-500 text-white px-4 py-2 rounded-full hover:bg-yellow-500 text-sm font-medium shadow-md transform hover:scale-105 transition duration-300">
                         Sign In
                     </a>
                 </div>
@@ -53,7 +53,6 @@ include_once '../classes/db.php';
 include_once '../classes/classe_Reservation.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Assurez-vous que tous les champs nécessaires sont fournis
     $username = isset($_POST['username']) ? $_POST['username'] : null;
     $email = isset($_POST['email']) ? $_POST['email'] : null;
     $phone = isset($_POST['phone']) ? $_POST['phone'] : null;
@@ -61,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pickup_date = isset($_POST['pickup_date']) ? $_POST['pickup_date'] : null;
     $return_date = isset($_POST['return_date']) ? $_POST['return_date'] : null;
 
-    if (!$voiture_id || !$pickup_date || !$return_date) {
+    if (!$username || !$email || !$phone || !$voiture_id || !$pickup_date || !$return_date) {
         die("Erreur : Veuillez remplir tous les champs obligatoires.");
     }
 
@@ -73,7 +72,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $db = new Database();
         $pdo = $db->getConnection();
 
-        // Vérifiez si la voiture existe dans la base de données
         $stmt = $pdo->prepare("SELECT prix_par_jour FROM voiture WHERE id = ?");
         $stmt->execute([$voiture_id]);
         $prix_par_jour = $stmt->fetchColumn();
@@ -82,14 +80,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die("Erreur : La voiture sélectionnée n'existe pas.");
         }
 
-        // Calculez le prix total de la réservation
         $nb_jours = (strtotime($return_date) - strtotime($pickup_date)) / 86400;
         $total_price = $prix_par_jour * $nb_jours;
 
-        // Supposez un ID utilisateur (à remplacer par une vraie identification utilisateur)
-        $user_id = 1;
+        $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
+        $stmt->execute([$email]);
+        $user_id = $stmt->fetchColumn();
 
-        // Créez une réservation
+        if (!$user_id) {
+            $stmt = $pdo->prepare("INSERT INTO users (username, email, phone) VALUES (?, ?, ?)");
+            $stmt->execute([$username, $email, $phone]);
+            $user_id = $pdo->lastInsertId();
+        }
+
         $reservation = new Reservation($user_id, $voiture_id, $pickup_date, $return_date, $total_price);
         $is_saved = $reservation->creerReservation($pdo);
 
@@ -110,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="max-w-4xl mx-auto px-6">
         <div class="bg-gray-900 bg-opacity-80 p-10 shadow-2xl rounded-lg border border-gray-700 mt-12">
             <h2 class="text-4xl font-bold text-center text-yellow-400 mb-8 tracking-wide uppercase">Réservez Votre Véhicule</h2>
-            <form class="space-y-8" action="../traitement/trait_reservation.php" method="POST">
+            <form class="space-y-8" action="./reservation.php" method="POST">
 
             <div class="grid grid-cols-1 sm:grid-cols-1 gap-8">
                     <div>
@@ -132,7 +135,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="voiture_id" class="block text-sm font-medium text-yellow-300">Sélectionnez votre voiture</label>
                 <select id="car" name="voiture_id" class="w-full bg-gray-800 border border-gray-600 text-yellow-100 rounded-md focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none px-4 py-2">
                     <?php
-                    // Affichage des voitures récupérées de la base de données
                     include ("db.php");
                     $db = new Database();
                     $pdo = $db->getConnection();

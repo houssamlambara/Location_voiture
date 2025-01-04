@@ -111,32 +111,48 @@
 <!-- Main Content -->
 <div class="p-4 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-1">
   <div class="col-span-1 bg-white p-6 rounded-lg shadow-md lg:ml-64 mt-20">
-    <h2 class="text-center text-2xl font-bold mb-8 text-orange-500">Ajouter une Voiture</h2>
-    <form action="add_menu.php" method="POST" enctype="multipart/form-data" class="space-y-4">
-    <div>
-        <label for="nom" class="block text-sm font-medium text-gray-700">Model</label>
-        <input type="text" id="nom" name="model" class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm" placeholder="Entrez le nom" required>
-    </div>
-    <div>
-        <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-        <input type="text" id="description" name="description" class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm" placeholder="Description" required>
-    </div>
-    <div>
-        <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
-        <input type="file" id="image" name="image_url" class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm">
-    </div>
-    <div>
-        <label for="prix" class="block text-sm font-medium text-gray-700">Prix</label>
-        <textarea id="prix" name="prix_par_jour" class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm" placeholder="Entrez le prix" required></textarea>
-    </div>
-    <div>
-        <button type="submit" class="w-full bg-orange-600 text-white py-2 px-4 rounded-md shadow hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2">Ajouter une Voiture</button>
-    </div>
-</form>
+    <h2 class="text-center text-2xl font-bold mb-8 text-yellow-500">Ajouter une Voiture</h2>
+    <form action="../classes/add_car.php" method="POST" enctype="multipart/form-data" class="space-y-4">
+        <div>
+            <label for="nom" class="block text-sm font-medium text-gray-700">Model</label>
+            <input type="text" id="nom" name="model" class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm" placeholder="Entrez le nom" required>
+        </div>
+        <div>
+            <label for="category_id" class="block text-sm font-medium text-gray-700">Catégorie</label>
+            <select id="category_id" name="category_id" class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm" required>
+                <option value="">Sélectionnez une catégorie</option>
+                <?php
+                require_once '../classes/db.php';
+                $db = new Database();
+                $conn = $db->getConnection();
+                $sql = "SELECT id, name FROM categories";  
+                $res = $conn->query($sql);
+                while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+                    echo "<option value='{$row['id']}'>{$row['name']}</option>";
+                }
+                ?>
+            </select>
+        </div>
+        <div>
+            <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+            <input type="text" id="description" name="description" class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm" placeholder="Description" required>
+        </div>
+        <div>
+            <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
+            <input type="file" id="image" name="image_url" class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+        </div>
+        <div>
+            <label for="prix" class="block text-sm font-medium text-gray-700">Prix</label>
+            <textarea id="prix" name="prix_par_jour" class="p-2 mt-1 block w-full rounded-md border-gray-300 shadow-sm" placeholder="Entrez le prix" required></textarea>
+        </div>
+        <div>
+            <button type="submit" class="w-full bg-yellow-400 text-white py-2 px-4 rounded-md shadow hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2">Ajouter une Voiture</button>
+        </div>
+    </form>
   </div>
 
   <div class="col-span-1 md:col-span-2 bg-white p-6 rounded-lg shadow-md overflow-x-auto lg:ml-64">
-    <h2 class="text-center text-2xl font-bold mb-8 text-orange-500">Add Voiture</h2>
+    <h2 class="text-center text-2xl font-bold mb-8 text-yellow-500">Add Voiture</h2>
     <div>
       <table class="w-full border-collapse border border-gray-400">
         <thead class="bg-black">
@@ -145,29 +161,23 @@
             <th class="border border-black text-white px-4 py-2">Description</th>
             <th class="border border-black text-white px-4 py-2">Image</th>
             <th class="border border-black text-white px-4 py-2">Prix</th>
-            <th class="border border-black text-white px-4 py-2">statut</th>
+            <th class="border border-black text-white px-4 py-2">Statut</th>
           </tr>
         </thead>
         <tbody>
         <?php
-include("../classes/db.php");
-
-$db = new Database();
-$conn = $db->getConnection();
-
-$sql = "SELECT * FROM `voiture`";
-$res = $conn->query($sql);
-
-while ($row = $res->fetch(PDO::FETCH_ASSOC)):
-?>
-    <tr class="hover:bg-orange-500">
-        <td class="border border-black px-4 py-2"><?php echo $row["model"]; ?></td>
-        <td class="border border-black px-4 py-2"><?php echo $row["description"]; ?></td>
-        <td class="border border-black px-4 py-2"><?php echo $row["image_url"]; ?></td>
-        <td class="border border-black px-4 py-2"><?php echo $row["prix_par_jour"]; ?></td>
-        <td class="border border-black px-4 py-2"><?php echo $row["status"]; ?></td>
-    </tr>
-<?php endwhile; ?>
+        $sql = "SELECT * FROM `voiture`";
+        $res = $conn->query($sql);
+        while ($row = $res->fetch(PDO::FETCH_ASSOC)):
+        ?>
+            <tr class="hover:bg-orange-500">
+                <td class="border border-black px-4 py-2"><?php echo htmlspecialchars($row["model"]); ?></td>
+                <td class="border border-black px-4 py-2"><?php echo htmlspecialchars($row["description"]); ?></td>
+                <td class="border border-black px-4 py-2"><?php echo htmlspecialchars($row["image_url"]); ?></td>
+                <td class="border border-black px-4 py-2"><?php echo htmlspecialchars($row["prix_par_jour"]); ?></td>
+                <td class="border border-black px-4 py-2"><?php echo htmlspecialchars($row["status"]); ?></td>
+            </tr>
+        <?php endwhile; ?>
         </tbody>
       </table>
     </div>

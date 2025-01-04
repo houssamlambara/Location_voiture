@@ -1,36 +1,44 @@
 <?php
-include("db.php");
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $db = new Database();
-    $conn = $db->getConnection();
+require_once '../classes/db.php';
 
-    $model = $conn->quote($_POST['model']);
-    $description = $conn->quote($_POST['description']);
-    $prix = $conn->quote($_POST['prix_par_jour']);
-    $imageName = NULL;
-    $uploadDir = 'uploads/';
-    if (!file_exists($uploadDir)) {
-        mkdir($uploadDir, 0777, true); 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $model = $_POST['model'];
+    $category_id = $_POST['category_id'];
+    $description = $_POST['description'];
+    $prix_par_jour = $_POST['prix_par_jour'];
+    $image_url = '';
+
+    if (isset($_FILES['image_url']) && $_FILES['image_url']['error'] == 0) {
+        $upload_dir = 'uploads/';
+        $image_url = $upload_dir . basename($_FILES['image_url']['name']);
+        move_uploaded_file($_FILES['image_url']['tmp_name'], $image_url);
     }
 
-    if (isset($_FILES['image_url']) && $_FILES['image_url']['error'] === 0) {
-        $imageName = $_FILES['image_url']['name'];
-        $imageTmpName = $_FILES['image_url']['tmp_name'];
-        $imageDestination = $uploadDir . $imageName;
+    try {
+        $database = new Database();
+        $db = $database->getConnection();
 
-        if (move_uploaded_file($imageTmpName, $imageDestination)) {
-            echo "Image uploaded successfully!";
+        $sql = "INSERT INTO voiture (model, category_id, description, image_url, prix_par_jour) VALUES (:model, :category_id, :description, :image_url, :prix_par_jour)";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':model', $model);
+        $stmt->bindParam(':category_id', $category_id);
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':image_url', $image_url);
+        $stmt->bindParam(':prix_par_jour', $prix_par_jour);
+        
+        if ($stmt->execute()) {
+            echo "Voiture ajoutée avec succès.";
+            header("Location: ../front_end/add_car.php");
+            exit;
         } else {
-            echo "Error: Unable to move the uploaded file.";
+            echo "Erreur lors de l'ajout de la voiture.";
         }
-    }
-
-    $sql = "INSERT INTO `voiture` (model, description, image_url, prix_par_jour) VALUES ($model, $description, '$imageName', $prix)";
-    if ($conn->exec($sql)) {
-        echo "Voiture added successfully!";
-    } else {
-        echo "Error: " . $conn->errorInfo()[2];
+    } catch (PDOException $e) {
+        echo "Erreur : " . $e->getMessage();
     }
 }
 ?>

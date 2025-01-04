@@ -97,11 +97,9 @@
 include_once '../classes/db.php';
 include_once '../classes/classe_Reservation.php';
 
-// Connexion à la base de données
 $db = new Database();
 $pdo = $db->getConnection();
 
-// Récupération des réservations
 $reservation = new Reservation();
 $reservations = $reservation->getAllReservations($pdo);
 ?>

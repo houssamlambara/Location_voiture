@@ -1,17 +1,14 @@
 <?php
-include_once './signupController.php'; // Inclusion de la classe User
+include_once './signupController.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Récupérer les données du formulaire
     $username = $_POST['username'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $password = $_POST['password'];
 
-    // Créer une instance de la classe User
     $user = new User($username, $email, $phone, $password);
 
-    // Appel de la méthode pour traiter l'inscription
     $user->register();
 }
 ?>
@@ -51,14 +48,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="flex-1 flex justify-center">
                     <div class="flex items-baseline space-x-4">
                         <a href="../index.php" class="text-white nav-hover hover:bg-yellow-500 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                        <a href="./categorie.php" class="text-white nav-hover hover:bg-yellow-500 px-3 py-2 rounded-md text-sm font-medium">Nos Véhicules</a>
-                        <a href="./reservation.php" class="text-white nav-hover hover:bg-yellow-500 px-3 py-2 rounded-md text-sm font-medium">Réservation</a>
-                        <a href="#" class="text-white nav-hover hover:bg-yellow-500 px-3 py-2 rounded-md text-sm font-medium">À Propos</a>
-                        <a href="./contact.php" class="text-white nav-hover hover:bg-yellow-500 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                        <a href="../front_end/categorie.php" class="text-white nav-hover hover:bg-yellow-500 px-3 py-2 rounded-md text-sm font-medium">Nos Véhicules</a>
+                        <a href="../front_end/reservation.php" class="text-white nav-hover hover:bg-yellow-500 px-3 py-2 rounded-md text-sm font-medium">Réservation</a>
+                        <a href="../front_end/about.php" class="text-white nav-hover hover:bg-yellow-500 px-3 py-2 rounded-md text-sm font-medium">À Propos</a>
+                        <a href="../front_end/contact.php" class="text-white nav-hover hover:bg-yellow-500 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
                     </div>
                 </div>
                 <div>
-                    <a href="./login/signup.php" class="bg-yellow-500 text-white px-4 py-2 rounded-full hover:bg-yellow-500 text-sm font-medium shadow-md transform hover:scale-105 transition duration-300">
+                    <a href="./signin.php" class="bg-yellow-500 text-white px-4 py-2 rounded-full hover:bg-yellow-500 text-sm font-medium shadow-md transform hover:scale-105 transition duration-300">
                         Sign In
                     </a>
                 </div>
@@ -109,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </button>
             </div>
             <div class="text-center mt-6">
-                <p class="text-gray-500">Vous avez déjà un compte ? <a href="../login/signin.php" class="text-yellow-500 hover:underline">Connectez-vous</a></p>
+                <p class="text-gray-500">Vous avez déjà un compte ? <a href="./signin.php" class="text-yellow-500 hover:underline">Connectez-vous</a></p>
             </div>
         </div>
     </div>
