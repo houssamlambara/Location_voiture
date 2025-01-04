@@ -115,10 +115,12 @@
     <div>
       <table class="w-full border-collapse border border-gray-400">
         <thead class="bg-black">
-          <tr>
+          <tr>           
+             <th class="border border-black text-white px-4 py-2">ID</th>
             <th class="border border-black text-white px-4 py-2">Username</th>
             <th class="border border-black text-white px-4 py-2">Email</th>
             <th class="border border-black text-white px-4 py-2">Phone</th>
+            <th class="border border-black text-white px-4 py-2">Role ID</th>
           </tr>
         </thead>
         <tbody>
@@ -133,9 +135,11 @@
 
           while ($row = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
             <tr class="hover:bg-orange-500">
+            <td class="border border-black px-4 py-2"><?php echo htmlspecialchars($row["id"]); ?></td>
               <td class="border border-black px-4 py-2"><?php echo htmlspecialchars($row["username"]); ?></td>
               <td class="border border-black px-4 py-2"><?php echo htmlspecialchars($row["email"]); ?></td>
               <td class="border border-black px-4 py-2"><?php echo htmlspecialchars($row["phone"]); ?></td>
+              <td class="border border-black px-4 py-2"><?php echo htmlspecialchars($row["role_id"]); ?></td>
             </tr>
           <?php endwhile; ?>
         </tbody>

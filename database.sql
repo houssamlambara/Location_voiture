@@ -82,9 +82,6 @@ where id=voiture_id;
 END;//
 
 
-
-
-
 CREATE TABLE REVIEWS (
     id INT(11) PRIMARY KEY AUTO_INCREMENT,
     user_id INT(11),

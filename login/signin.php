@@ -7,23 +7,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    $user = new User();
-    $authenticatedUser = $user->authenticate($email, $password);
-    if ($authenticatedUser) {
-        if ($authenticatedUser['id_role'] == 1) {
+    if ($email && $password) {
+        $user = new User();
+        $authenticatedUser = $user->authenticate($email, $password);
 
-            header("Location: ../front_end/admin.php");
-            exit();
+        if ($authenticatedUser) {
+            if ($authenticatedUser['id_role'] == 1) {
+                header("Location: ../front_end/admin.php");
+                exit();
+            } else {
+                $_SESSION['id_user'] = $authenticatedUser['id'];
+                header("Location: ../index.php");
+                exit();
+            }
         } else {
-            $_SESSION['id_user'] = $authenticatedUser['id'];
-            header("Location: ../index.php");
-            exit();
+            $error = "Email ou mot de passe incorrect.";
         }
-    } else {
-        $error = "Email ou mot de passe incorrect.";
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 

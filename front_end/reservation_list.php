@@ -135,7 +135,7 @@
 
           while ($row = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
             <tr class="hover:bg-orange-500">
-              <td class="border border-black px-4 py-2"><?php echo $row["user_id"] ?></td>
+              <td class="border border-black px-4 py-2"><?php echo $row["id"] ?></td>
               <td class="border border-black px-4 py-2"><?php echo $row["voiture_id"] ?></td>
               <td class="border border-black px-4 py-2"><?php echo $row["pickup_date"] ?></td>
               <td class="border border-black px-4 py-2"><?php echo $row["return_date"] ?></td>

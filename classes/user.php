@@ -3,50 +3,55 @@ include_once 'db.php';
 
 class User
 {
-    private $user_id;
     private $username;
     private $email;
-    private $phone;
     private $password;
     private PDO $db;
-    function __construct($db)
+
+    public function __construct(PDO $db)
     {
         $this->db = $db;
     }
+
     public function registerUser()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->username = $_POST['username'];
-            $this->email = $_POST['email'];
-            $this->password = $_POST['password'];
+            $this->username = $_POST['username'] ?? null;
+            $this->email = $_POST['email'] ?? null;
+            $this->password = $_POST['password'] ?? null;
 
-            $message = $this->register();
+            if (empty($this->username) || empty($this->email) || empty($this->password)) {
+                return "Tous les champs doivent être remplis.";
+            }
 
-            return $message;
+            $user_id = $this->register();
+            if (is_numeric($user_id)) {
+                return "Utilisateur enregistré avec succès. ID utilisateur : " . $user_id;
+            } else {
+                return $user_id; 
+            }
         }
+        return "Méthode non autorisée.";
     }
 
     private function register()
     {
-        if (empty($this->username) || empty($this->email) || empty($this->password)) {
-            return "Tous les champs doivent être remplis.";
-        }
+        try {
+            $query = "INSERT INTO users (username, email, password) VALUES (:username, :email, :password)";
+            $stmt = $this->db->prepare($query);
 
-        $database = new Database();
-        $db = $database->getConnection();
+            $stmt->bindParam(':username', $this->username);
+            $stmt->bindParam(':email', $this->email);
+            $stmt->bindParam(':password', password_hash($this->password, PASSWORD_DEFAULT));
 
-        $query = "INSERT INTO users (username, email, password) VALUES (:username, :email, :password)";
-        $stmt = $db->prepare($query);
-
-        // Lier les paramètres
-        $stmt->bindParam(':username', $this->username);
-        $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':password', password_hash($this->password, PASSWORD_DEFAULT));
-
-        if ($stmt->execute()) {
-            return "Utilisateur enregistré avec succès.";
-        } else {
-            return "Erreur lors de l'enregistrement de l'utilisateur.";
+            if ($stmt->execute()) {
+                return $this->db->lastInsertId(); 
+            } else {
+                return "Erreur lors de l'enregistrement de l'utilisateur.";
+            }
+        } catch (PDOException $e) {
+            return "Erreur SQL : " . $e->getMessage();
         }
     }
 }
+?>

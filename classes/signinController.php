@@ -26,6 +26,6 @@ class User
             }
         }
 
-        return false; // Authentification échouée
+        return false; 
     }
 }

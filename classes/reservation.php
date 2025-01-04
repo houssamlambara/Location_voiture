@@ -1,7 +1,7 @@
 <?php
 class Reservation
 {
-    private $user_id;
+    protected $user_id;
     private $voiture_id;
     private $pickup_date;
     private $return_date;
@@ -18,13 +18,16 @@ class Reservation
 
     public function creerReservation($pdo)
     {
-        $sql = "INSERT INTO reservations (user_id, voiture_id, pickup_date, return_date, total_price) VALUES (:user_id, :voiture_id, :pickup_date, :return_date, :total_price)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':user_id', $this->user_id);
-        $stmt->bindParam(':voiture_id', $this->voiture_id);
-        $stmt->bindParam(':pickup_date', $this->pickup_date);
-        $stmt->bindParam(':return_date', $this->return_date);
-        $stmt->bindParam(':total_price', $this->total_price);
-        return $stmt->execute();
+        $stmt = $pdo->prepare("INSERT INTO reservations (user_id, voiture_id, pickup_date, return_date, total_price) VALUES (:user_id, :voiture_id, :pickup_date, :return_date, :total_price)");
+        $stmt->bindParam(':user_id',$this->user_id, PDO::PARAM_INT);
+        $stmt->bindParam(':voiture_id', $this->voiture_id, PDO::PARAM_INT);
+        $stmt->bindParam(':pickup_date', $this->pickup_date, PDO::PARAM_STR);
+        $stmt->bindParam(':return_date', $this->return_date, PDO::PARAM_STR);
+        $stmt->bindParam(':total_price', $this->total_price, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return $pdo->lastInsertId();
+        } else {
+            return false;
+        }
     }
 }

@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php 
+    session_start();
+    echo $user_id = $_SESSION['id_user'];
+?>
 <html lang="fr">
 
 <head>
