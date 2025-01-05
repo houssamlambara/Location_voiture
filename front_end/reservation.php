@@ -23,7 +23,7 @@
 
 <body class="bg-gradient-to-br from-gray-50 to-gray-100">
     <!-- Navbar Amélioré -->
-    <!-- <nav class="bg-black bg-opacity-95 shadow-2xl fixed w-full z-50">
+    <nav class="bg-black bg-opacity-95 shadow-2xl fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
@@ -47,20 +47,20 @@
                 </div>
             </div>
         </div>
-    </nav> -->
+    </nav>
 
     <?php
 session_start();
 include_once '../classes/db.php';
 include_once '../classes/classe_Reservation.php';
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['id_user'])) {
     die("Erreur : Utilisateur non connecté.");
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user_id = $_SESSION['user_id'];
-    echo $user_id;
+    $id_user = $_SESSION['id_user'];
+    echo $id_user;
     
     $username = isset($_POST['username']) ? $_POST['username'] : null;
     $email = isset($_POST['email']) ? $_POST['email'] : null;
@@ -93,10 +93,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $total_price = $prix_par_jour * $nb_jours;
 
         $stmt = $pdo->prepare("UPDATE users SET username = ?, phone = ? WHERE id = ?");
-        $stmt->execute([$username, $phone, $user_id]);
+        $stmt->execute([$username, $phone, $id_user]);
 
-        $reservation = new Reservation($user_id, $voiture_id, $pickup_date, $return_date, $total_price);
-        $is_saved = $reservation->creerReservation($pdo,$user_id);
+        $reservation = new Reservation($id_user, $voiture_id, $pickup_date, $return_date, $total_price);
+        $is_saved = $reservation->creerReservation($pdo,$id_user);
 
         if ($is_saved) {
             echo "Réservation créée avec succès.";

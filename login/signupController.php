@@ -1,15 +1,17 @@
 <?php
+include_once "../classes/db.php";
 
-class User
-{
-    protected $username;
-    protected $email;
-    protected $password;
-    protected $phone;
+class User {
+    private $username;
+    private $email;
+    private $password;
+    private $phone;
     public $message;
+    private PDO $db;
 
-    public function __construct($username, $email, $password, $phone)
+    public function __construct(PDO $db, $username, $email, $password, $phone)
     {
+        $this->db = $db;
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
@@ -20,39 +22,31 @@ class User
     public function register()
     {
         if ($this->validate()) {
-            $conn = new mysqli("localhost", "root", "", "location_voiture");
+            $stmt = $this->db->prepare("SELECT id FROM users WHERE username = :username");
+            $stmt->execute([':username' => $this->username]);
 
-            if ($conn->connect_error) {
-                die("Échec de la connexion à la base de données : " . $conn->connect_error);
-            }
-
-            $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
-            $stmt->bind_param("s", $this->username);
-            $stmt->execute();
-            $stmt->store_result();
-
-            if ($stmt->num_rows > 0) {
+            if ($stmt->rowCount() > 0) {
                 $this->message = "Le nom d'utilisateur est déjà pris.";
-                $stmt->close();
-                $conn->close();
                 return;
             }
 
             $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);
+            $stmt = $this->db->prepare("INSERT INTO users (role_id,username, email, phone, password) VALUES (:role_id, :username, :email, :phone, :password)");
+            $params = [
+                ':role_id' => 2,    
+                ':username' => $this->username,
+                ':email' => $this->email,
+                ':phone' => $this->phone,
+                ':password' => $hashedPassword
+            ];
 
-            $stmt = $conn->prepare("INSERT INTO users (username, email, phone, password) VALUES (?, ?, ?, ?)");
-            $stmt->bind_param("ssss", $this->username, $this->email, $this->phone, $hashedPassword);
-
-            if ($stmt->execute()) {
+            if ($stmt->execute($params)) {
                 $this->message = "Inscription réussie !";
-                header('Location: signin.php');
+                header('Location: ./signin.php');
                 exit();
             } else {
-                $this->message = "Erreur : " . $stmt->error;
+                $this->message = "Erreur : " . $stmt->errorInfo()[2];
             }
-
-            $stmt->close();
-            $conn->close();
         } else {
             $this->message = "Les champs sont invalides.";
         }
@@ -60,8 +54,13 @@ class User
 
     private function validate()
     {
+        if (empty($this->username) || empty($this->email) || empty($this->password) || empty($this->phone)) {
+            $this->message = "Tous les champs sont requis.";
+            return false;
+        }
+
         if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-            $this->message = "L'email n'est pas valide.<br>";
+            $this->message = "L'email n'est pas valide.";
             return false;
         }
 
@@ -70,7 +69,20 @@ class User
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $user = new User($_POST['username'], $_POST['email'], $_POST['password'], $_POST['phone']);
+    require_once '../classes/db.php'; 
+
+    $dbInstance = new Database();
+    $pdo = $dbInstance->getConnection();
+
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $phone = $_POST['phone'];
+
+    $user = new User($pdo, $username, $email, $password, $phone);
+
     $user->register();
+
     echo $user->message;
 }
+?>

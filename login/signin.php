@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $authenticatedUser = $user->authenticate($email, $password);
 
         if ($authenticatedUser) {
-            if ($authenticatedUser['id_role'] == 1) {
+            if ($authenticatedUser['role_id'] == 1) {
                 header("Location: ../front_end/admin.php");
                 exit();
             } else {

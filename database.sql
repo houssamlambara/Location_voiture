@@ -53,6 +53,7 @@ CREATE TABLE VOITURE (
 
 CREATE TABLE RESERVATIONS (
     id INT(11) PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(255) NOT NULL;
     user_id INT(11),
     voiture_id INT(11), 
     pickup_date DATE NOT NULL,

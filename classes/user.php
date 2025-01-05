@@ -34,14 +34,16 @@ class User
         return "Méthode non autorisée.";
     }
 
-    private function register()
+    public function register()
     {
         try {
-            $query = "INSERT INTO users (username, email, password) VALUES (:username, :email, :password)";
+            $query = "INSERT INTO users (username, email, password,role_id) VALUES (:username, :email, :password,:role_id)";
+$role_id=2;
             $stmt = $this->db->prepare($query);
 
             $stmt->bindParam(':username', $this->username);
             $stmt->bindParam(':email', $this->email);
+$stmt->bindParam(':role_id',$role_id);
             $stmt->bindParam(':password', password_hash($this->password, PASSWORD_DEFAULT));
 
             if ($stmt->execute()) {
@@ -53,5 +55,4 @@ class User
             return "Erreur SQL : " . $e->getMessage();
         }
     }
-}
-?>
+} 

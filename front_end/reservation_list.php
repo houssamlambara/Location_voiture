@@ -99,7 +99,7 @@
           </a>
         </li>
         <li>
-          <a href="../login//signin.php" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-orange-500 group">
+          <a href="../login/signin.php" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-orange-500 group">
             <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3" />
             </svg>
@@ -116,7 +116,8 @@
       <table class="w-full border-collapse border border-gray-400">
         <thead class="bg-black">
           <tr>
-            <th class="border border-black text-white px-4 py-2">User</th>
+            <th class="border border-black text-white px-4 py-2">ID</th>
+            <th class="border border-black text-white px-4 py-2">Username</th>
             <th class="border border-black text-white px-4 py-2">Voiture</th>
             <th class="border border-black text-white px-4 py-2">Pickup Date</th>
             <th class="border border-black text-white px-4 py-2">Return Date</th>
@@ -136,6 +137,7 @@
           while ($row = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
             <tr class="hover:bg-orange-500">
               <td class="border border-black px-4 py-2"><?php echo $row["user_id"] ?></td>
+              <td class="border border-black px-4 py-2"><?php echo $row["username"] ?></td>
               <td class="border border-black px-4 py-2"><?php echo $row["voiture_id"] ?></td>
               <td class="border border-black px-4 py-2"><?php echo $row["pickup_date"] ?></td>
               <td class="border border-black px-4 py-2"><?php echo $row["return_date"] ?></td>
