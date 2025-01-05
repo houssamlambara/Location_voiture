@@ -4,6 +4,7 @@
     {
 
         private $id;
+        private $username;
         private $voiture_id;
         private $user_id;
         private $pickup_date;
@@ -11,8 +12,9 @@
         private $total_price;
         private $status;
 
-        public function __construct($id = null, $voiture_id = null, $pickup_date = null, $return_date = null, $total_price = null, $status = 'En attente')
+        public function __construct($id = null,$username=null, $voiture_id = null, $pickup_date = null, $return_date = null, $total_price = null, $status = 'En attente')
         {
+            $this->username = $username;
             $this->voiture_id = $voiture_id;
             $this->pickup_date = $pickup_date;
             $this->return_date = $return_date;
@@ -23,12 +25,13 @@
         public function creerReservation($pdo, $user_id)
         {
             try {
-                $query = "INSERT INTO reservations (user_id, voiture_id, pickup_date, return_date, total_price, status) 
-                          VALUES (:user_id, :voiture_id, :pickup_date, :return_date, :total_price, :status)";
+                $query = "INSERT INTO reservations (user_id, username, voiture_id, pickup_date, return_date, total_price, status) 
+                          VALUES (:user_id, :username, :voiture_id, :pickup_date, :return_date, :total_price, :status)";
 
                 $stmt = $pdo->prepare($query);
 
                 $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+                $stmt->bindParam(':username', $this->username, PDO::PARAM_STR);
                 $stmt->bindParam(':voiture_id', $this->voiture_id, PDO::PARAM_INT);
                 $stmt->bindParam(':pickup_date', $this->pickup_date, PDO::PARAM_STR);
                 $stmt->bindParam(':return_date', $this->return_date, PDO::PARAM_STR);

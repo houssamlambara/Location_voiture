@@ -59,9 +59,7 @@ if (!isset($_SESSION['id_user'])) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id_user = $_SESSION['id_user'];
-    echo $id_user;
-    
+    $id_user = $_SESSION['id_user'];    
     $username = isset($_POST['username']) ? $_POST['username'] : null;
     $email = isset($_POST['email']) ? $_POST['email'] : null;
     $phone = isset($_POST['phone']) ? $_POST['phone'] : null;
@@ -95,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $pdo->prepare("UPDATE users SET username = ?, phone = ? WHERE id = ?");
         $stmt->execute([$username, $phone, $id_user]);
 
-        $reservation = new Reservation($id_user, $voiture_id, $pickup_date, $return_date, $total_price);
+        $reservation = new Reservation($id_user,$username, $voiture_id, $pickup_date, $return_date, $total_price);
         $is_saved = $reservation->creerReservation($pdo,$id_user);
 
         if ($is_saved) {
