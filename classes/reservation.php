@@ -1,5 +1,5 @@
 <?php
-
+/*
 class Reservation {
     private $user_id;
     private $username;
@@ -58,4 +58,5 @@ class Reservation {
         }
     }
 }
+*/
 ?>
