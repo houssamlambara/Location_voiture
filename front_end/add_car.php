@@ -154,7 +154,7 @@
     </div>
 
     <div class="col-span-1 md:col-span-2 bg-white p-6 rounded-lg shadow-md overflow-x-auto lg:ml-64">
-      <h2 class="text-center text-2xl font-bold mb-8 text-yellow-500">Add Voiture</h2>
+      <h2 class="text-center text-2xl font-bold mb-8 text-yellow-500">List Voiture</h2>
       <div>
         <table class="w-full border-collapse border border-gray-400">
           <thead class="bg-black">

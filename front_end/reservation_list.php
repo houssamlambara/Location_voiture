@@ -123,6 +123,7 @@
             <th class="border border-black text-white px-4 py-2">Return Date</th>
             <th class="border border-black text-white px-4 py-2">Total</th>
             <th class="border border-black text-white px-4 py-2">Statut</th>
+            <th class="border border-black text-white px-4 py-2">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -130,19 +131,34 @@
           include("../classes/db.php");
           $db = new Database();
           $conn = $db->getConnection();
-          $sql = "SELECT * FROM `reservations`";
+          $sql = "SELECT reservations.*, users.username FROM reservations JOIN users ON reservations.user_id = users.id";
           $stmt = $conn->prepare($sql);
           $stmt->execute();
 
           while ($row = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
             <tr class="hover:bg-orange-500">
-              <td class="border border-black px-4 py-2"><?php echo $row["user_id"] ?></td>
+              <td class="border border-black px-4 py-2"><?php echo $row["id"] ?></td>
               <td class="border border-black px-4 py-2"><?php echo $row["username"] ?></td>
               <td class="border border-black px-4 py-2"><?php echo $row["voiture_id"] ?></td>
               <td class="border border-black px-4 py-2"><?php echo $row["pickup_date"] ?></td>
               <td class="border border-black px-4 py-2"><?php echo $row["return_date"] ?></td>
               <td class="border border-black px-4 py-2"><?php echo $row["total_price"] ?>$</td>
-              <td class="border border-black px-4 py-2"><?php echo $row["status"] ?></td>
+              <td class="border border-black px-4 py-2">
+                <form action="./update_status.php" method="POST">
+                  <input type="hidden" name="./reservation.php" value="<?php echo $row['id']; ?>">
+                  <select name="status" onchange="this.form.submit()">
+                    <option value="En attente" <?php if ($row['status'] == 'En attente') echo 'selected'; ?>>En attente</option>
+                    <option value="Confirmer" <?php if ($row['status'] == 'Confirmer') echo 'selected'; ?>>Confirmer</option>
+                    <option value="Annuler" <?php if ($row['status'] == 'Annuler') echo 'selected'; ?>>Annuler</option>
+                  </select>
+                </form>
+              </td>
+              <td class="border border-black px-4 py-2">
+                <form action="./delete_reservation.php" method="POST">
+                  <input type="hidden" name="reservation_id" value="<?php echo $row['id']; ?>">
+                  <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
+                </form>
+              </td>
             </tr>
           <?php endwhile; ?>
         </tbody>
